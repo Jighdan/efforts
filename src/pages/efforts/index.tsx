@@ -1,5 +1,5 @@
 import { Layout } from "~/common/layouts/Main";
-import { View } from "~/views/home";
+import { View } from "~/views/efforts";
 
 export default function Page() {
   return (
