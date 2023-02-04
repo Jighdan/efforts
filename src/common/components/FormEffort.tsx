@@ -4,18 +4,20 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateEffortDto } from "~/common/dto/effort";
 import { Input } from "~/common/components/Input";
 import { Button } from "~/common/components/Button";
-import { useStore } from "~/store";
+import { database } from "~/database";
+import { ColorPicker } from "./ColorPicker";
+import { COLORS } from "~/common/constants/colors";
 
 interface Props {
   closeModal: () => void;
 }
 
 export const schema = z.object({
-  title: z.string(),
+  title: z.string().min(6),
+  color: z.string().regex(/^#[0-9A-F]{6}$/i),
 });
 
 export const FormEffort = ({ closeModal }: Props) => {
-  const store = useStore();
   const form = useForm<CreateEffortDto>({
     resolver: zodResolver(schema),
     shouldFocusError: true,
@@ -23,8 +25,12 @@ export const FormEffort = ({ closeModal }: Props) => {
   });
 
   const onSubmit: SubmitHandler<CreateEffortDto> = async (dto) => {
-    await store.addEffort(dto);
-    closeModal();
+    const response = await database.efforts.create(dto);
+
+    if (!response.error) {
+      closeModal();
+      form.reset();
+    }
   };
 
   const onSubmitError: SubmitErrorHandler<CreateEffortDto> = async (dto) => {};
@@ -41,6 +47,15 @@ export const FormEffort = ({ closeModal }: Props) => {
           type="text"
           placeholder="what are you trying to achieve?"
           error={form.formState.errors?.title?.message}
+          required
+        />
+
+        <ColorPicker
+          label="Color"
+          control={form.control}
+          name="color"
+          required
+          items={COLORS}
         />
       </div>
 
