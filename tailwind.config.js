@@ -17,6 +17,10 @@ module.exports = {
     },
 
     extend: {
+      minHeight: {
+        "screen-1/2": "50vh",
+      },
+
       container: {
         center: true,
         screens: {
@@ -24,6 +28,52 @@ module.exports = {
           md: "360px",
           lg: "360px",
           xl: "360px",
+        },
+      },
+
+      animation: {
+        "fade-in": "fade-in 250ms ease forwards",
+        "fade-out": "fade-out 250ms ease forwards",
+        "fade-down": "fade-down 250ms ease forwards",
+        "fade-up": "fade-up 250ms linear forwards",
+      },
+
+      keyframes: {
+        "fade-in": {
+          "0%": {
+            opacity: 0,
+          },
+          "100%": {
+            opacity: 1,
+          },
+        },
+        "fade-out": {
+          "0%": {
+            opacity: 1,
+          },
+          "100%": {
+            opacity: 0,
+          },
+        },
+        "fade-down": {
+          "0%": {
+            opacity: 0,
+            translateY: "-100%",
+          },
+          "100%": {
+            opacity: 1,
+            translateY: 0,
+          },
+        },
+        "fade-up": {
+          "0%": {
+            opacity: 1,
+            translateY: 0,
+          },
+          "100%": {
+            opacity: 0,
+            translateY: "-100%",
+          },
         },
       },
     },
