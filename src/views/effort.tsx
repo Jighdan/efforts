@@ -22,18 +22,24 @@ export const View = ({ id }: ViewProps) => {
         <h2 className="text-2xl">{effort?.title}</h2>
       </header>
 
-      <ul className="flex flex-col gap-4 overflow-y-auto">
-        {effort?.entries.map((entry) => (
-          <li key={entry.id}>
-            <div>
-              <h4 className="text-silver text-light">
-                {entry?.id} - {entry?.date}
-              </h4>
-              <p>{entry.description}</p>
-            </div>
-          </li>
-        ))}
-      </ul>
+      {effort?.entries.length ? (
+        <ul className="flex flex-col gap-4 overflow-y-auto">
+          {effort?.entries.map((entry) => (
+            <li key={entry.id}>
+              <div>
+                <h4 className="text-silver text-light">
+                  {entry?.id} - {entry?.date}
+                </h4>
+                <p>{entry.description}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p className="text-lg text-center text-silver">
+          No Entries for this effort
+        </p>
+      )}
     </div>
   );
 };
