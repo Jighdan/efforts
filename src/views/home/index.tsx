@@ -3,7 +3,6 @@ import { useStore } from "~/store";
 import { ButtonAdd } from "~/common/components/ButtonAdd";
 import { ModalEntry } from "./components/ModalEntry";
 import { useState } from "react";
-import { ScrollArea } from "~/common/components/ScrollArea";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -30,32 +29,28 @@ export const View = () => {
         />
       </header>
 
-      <main>
-        <ScrollArea>
-          <ul className="list-disc flex flex-col gap-6">
-            {entries.map((entry) => (
-              <li
-                key={entry.id}
-                className="flex items-start before:content-['●'] before:inline-block before:text-silver gap-2 select-none"
-              >
-                <div className="flex flex-col grow">
-                  <div className="flex justify-between">
-                    <span className="text-silver font-light">
-                      <>{getLocaleTime(new Date(entry.date))}</>
-                    </span>
+      <ul className="list-disc flex flex-col gap-6 overflow-y-auto">
+        {entries.map((entry) => (
+          <li
+            key={entry.id}
+            className="flex items-start before:content-['●'] before:inline-block before:text-silver gap-2 select-none last:pb-6"
+          >
+            <div className="flex flex-col grow">
+              <div className="flex justify-between">
+                <span className="text-silver font-light">
+                  <>{getLocaleTime(new Date(entry.date))}</>
+                </span>
 
-                    <span className="text-silver font-light line-clamp-1">
-                      {entry.effort_title}
-                    </span>
-                  </div>
+                <span className="text-silver font-light line-clamp-1">
+                  {entry.effort_title}
+                </span>
+              </div>
 
-                  <p>{entry.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </ScrollArea>
-      </main>
+              <p>{entry.description}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
 
       <ModalEntry
         isOpen={isFormOpen}

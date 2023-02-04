@@ -1,12 +1,20 @@
 import { useStore } from "~/store";
-import { ScrollArea } from "~/common/components/ScrollArea";
 import Link from "next/link";
+import { ButtonAdd } from "~/common/components/ButtonAdd";
+import { ModalEffort } from "./components/ModalEffort";
+import { useState } from "react";
 
 export const View = () => {
   const { efforts } = useStore();
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
-    <ScrollArea>
+    <div className="flex flex-col gap-6">
+      <div className="flex justify-between">
+        <h2 className="text-2xl">Efforts</h2>
+        <ButtonAdd label="Add Effort" onClick={() => setIsFormOpen(true)} />
+      </div>
+
       <ul className="grid auto-rows-fr gap-4">
         {efforts.map((effort) => (
           <li key={effort.id} className="contents">
@@ -19,6 +27,8 @@ export const View = () => {
           </li>
         ))}
       </ul>
-    </ScrollArea>
+
+      <ModalEffort isOpen={isFormOpen} setIsOpen={setIsFormOpen} />
+    </div>
   );
 };

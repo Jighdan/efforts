@@ -1,25 +1,32 @@
 import { useMemo } from "react";
 import { useStore } from "~/store";
+import { IconArrowLeft } from "~/common/assets/icons/IconArrowLeft";
+import Link from "next/link";
+import { Routes } from "~/common/enums/routes";
 
 export interface ViewProps {
-	id: number;
-};
+  id: number;
+}
 
 export const View = ({ id }: ViewProps) => {
-	const { getEffortById } = useStore();
+  const { getEffortById } = useStore();
   const effort = useMemo(() => getEffortById(id), [id]);
 
   return (
-    <div>
-      <h2>
-        {effort?.id} - {effort?.title}
-      </h2>
+    <div className="max-h-full overflow-y-hidden flex flex-col gap-6">
+      <header className="flex flex-col gap-2">
+        <Link href={Routes.ALL_EFFORTS} title="All efforts">
+          <IconArrowLeft className="size-sm" />
+        </Link>
 
-      <ul>
+        <h2 className="text-2xl">{effort?.title}</h2>
+      </header>
+
+      <ul className="flex flex-col gap-4 overflow-y-auto">
         {effort?.entries.map((entry) => (
           <li key={entry.id}>
             <div>
-              <h4>
+              <h4 className="text-silver text-light">
                 {entry?.id} - {entry?.date}
               </h4>
               <p>{entry.description}</p>
@@ -29,4 +36,4 @@ export const View = ({ id }: ViewProps) => {
       </ul>
     </div>
   );
-}
+};

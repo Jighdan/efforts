@@ -1,4 +1,4 @@
-import { ComponentProps, useRef } from "react";
+import { ComponentProps } from "react";
 import { WithChildren } from "~/common/interfaces/with-children";
 import { Navigation } from "./components/Navigation";
 import { Routes } from "~/common/enums/routes";
@@ -32,7 +32,7 @@ export const Layout = ({ children }: Props) => {
 
   return (
     <div
-      className="min-h-screen max-h-screen max-sm:px-8 md:py-8 container layout-main"
+      className="min-h-screen max-h-screen max-sm:px-8 md:py-8 container layout-main first:overflow-hidden"
       ref={ref}
     >
       {children}

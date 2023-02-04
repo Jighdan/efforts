@@ -1,5 +1,5 @@
 import { ReactNode, createContext, useContext, useState } from "react";
-import { EffortDto } from "~/common/dto/effort";
+import { CreateEffortDto, EffortDto } from "~/common/dto/effort";
 import {
   EffortEntryDto,
   CreateEffortEntryDto,
@@ -15,6 +15,7 @@ interface State {
     effort_title: EffortDto["title"];
   })[];
   effortEntries: EffortEntryDto[];
+  addEffort: (dto: CreateEffortDto) => void;
   addEffortEntry: (dto: CreateEffortEntryDto) => void;
 }
 
@@ -23,6 +24,7 @@ const defaultState: State = {
   getEffortById: () => undefined,
   getTodayEntries: () => [],
   effortEntries: [],
+  addEffort: () => {},
   addEffortEntry: () => {},
 };
 
@@ -94,6 +96,19 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
     return undefined;
   };
 
+  const addEffort: State["addEffort"] = (dto) => {
+    const id = efforts.length + 1;
+    const createdAt = new Date().toISOString();
+
+    const effort: EffortDto = {
+      id,
+      title: dto.title,
+      created_at: createdAt,
+    };
+
+    setEfforts([...efforts, effort]);
+  };
+
   const addEffortEntry: State["addEffortEntry"] = (dto) => {
     const id = effortEntries.length + 1;
     const createdAt = new Date().toISOString();
@@ -137,6 +152,7 @@ export const StoreProvider = ({ children }: { children: ReactNode }) => {
         efforts,
         effortEntries,
         getEffortById,
+        addEffort,
         addEffortEntry,
         getTodayEntries,
       }}
