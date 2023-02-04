@@ -1,11 +1,11 @@
-import { useStore } from "~/store";
 import Link from "next/link";
 import { ButtonAdd } from "~/common/components/ButtonAdd";
 import { ModalEffort } from "./components/ModalEffort";
 import { useState } from "react";
+import { useEffortsContext } from "~/common/contexts/efforts";
 
 export const View = () => {
-  const { efforts } = useStore();
+  const { efforts } = useEffortsContext();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (
