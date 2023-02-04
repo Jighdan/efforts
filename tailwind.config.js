@@ -109,7 +109,7 @@ module.exports = {
       addComponents({
         ".layout-main": {
           display: "grid",
-          gridTemplateRows: "1fr auto",
+          gridTemplateRows: "minmax(0, 1fr) auto",
         },
       });
     }),
