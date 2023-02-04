@@ -80,6 +80,7 @@ module.exports = {
   },
   plugins: [
     require("tailwindcss-radix")(),
+    require("@tailwindcss/line-clamp"),
 
     plugin(function ({ addVariant }) {
       addVariant("child", "& > *");
