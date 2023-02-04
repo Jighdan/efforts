@@ -3,45 +3,47 @@ export interface Database {
     Tables: {
       efforts: {
         Row: {
-          created_at: string | null
-          id: number
-          title: string
-        }
+          color: string;
+          created_at: string | null;
+          id: number;
+          title: string;
+        };
         Insert: {
-          title: string
-        }
+          color: string;
+          title: string;
+        };
         Update: {
-          title?: string
-        }
-      }
+          color?: string;
+          title?: string;
+        };
+      };
       efforts_entries: {
         Row: {
-          created_at: string | null
-          date: string
-          description: string
-          effort_id: number
-          id: number
-        }
+          created_at: string | null;
+          date: string;
+          description: string;
+          effort_id: number;
+          id: number;
+        };
         Insert: {
-          date: string
-          description: string
-          effort_id: number
-        }
+          date?: string;
+          description: string;
+          effort_id?: number;
+        };
         Update: {
-          date?: string
-          description?: string
-          effort_id?: number
-        }
-      }
-    }
+          date?: string;
+          description?: string;
+        };
+      };
+    };
     Views: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Functions: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
     Enums: {
-      [_ in never]: never
-    }
-  }
-};
+      [_ in never]: never;
+    };
+  };
+}
