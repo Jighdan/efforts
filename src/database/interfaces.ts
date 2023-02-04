@@ -23,9 +23,9 @@ export interface Database {
           id: number
         }
         Insert: {
-          date?: string
+          date: string
           description: string
-          effort_id?: number
+          effort_id: number
         }
         Update: {
           date?: string

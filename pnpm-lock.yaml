@@ -10,6 +10,7 @@ specifiers:
   '@radix-ui/react-select': ^1.2.0
   '@radix-ui/react-visually-hidden': ^1.0.1
   '@supabase/supabase-js': ^2.4.1
+  '@tailwindcss/line-clamp': ^0.4.2
   '@types/node': 18.11.18
   '@types/react': 18.0.27
   '@types/react-dom': 18.0.10
@@ -50,6 +51,7 @@ devDependencies:
   '@radix-ui/react-select': 1.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
   '@radix-ui/react-visually-hidden': 1.0.1_biqbaboplfbrettd7655fr4n2y
   '@supabase/supabase-js': 2.4.1
+  '@tailwindcss/line-clamp': 0.4.2_tailwindcss@3.2.4
   autoprefixer: 10.4.13_postcss@8.4.21
   classnames: 2.3.2
   normalize.css: 8.0.1
@@ -737,6 +739,14 @@ packages:
     dependencies:
       tslib: 2.5.0
     dev: false
+
+  /@tailwindcss/line-clamp/0.4.2_tailwindcss@3.2.4:
+    resolution: {integrity: sha512-HFzAQuqYCjyy/SX9sLGB1lroPzmcnWv1FHkIpmypte10hptf4oPUfucryMKovZh2u0uiS9U5Ty3GghWfEJGwVw==}
+    peerDependencies:
+      tailwindcss: '>=2.0.0 || >=3.0.0 || >=3.0.0-alpha.1'
+    dependencies:
+      tailwindcss: 3.2.4_postcss@8.4.21
+    dev: true
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}

@@ -32,7 +32,7 @@ export const Layout = ({ children }: Props) => {
 
   return (
     <div
-      className="min-h-screen max-sm:px-8 md:py-8 container layout-main"
+      className="min-h-screen max-h-screen max-sm:px-8 md:py-8 container layout-main"
       ref={ref}
     >
       {children}
