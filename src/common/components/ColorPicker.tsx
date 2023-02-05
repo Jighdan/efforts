@@ -1,14 +1,11 @@
 import * as Primitive from "@radix-ui/react-radio-group";
-import { ComponentProps, forwardRef, ReactNode, RefObject } from "react";
+import { ComponentProps, forwardRef, ReactNode } from "react";
 import {
   FieldValues,
   useController,
-  FieldPath,
-  Control,
-  RegisterOptions,
   UseControllerProps,
 } from "react-hook-form";
-import { Root as Label } from "@radix-ui/react-label";
+import { InputControl } from "~/common/components/InputControl";
 
 interface Props<FormFields extends FieldValues>
   extends UseControllerProps<FormFields> {
@@ -77,9 +74,7 @@ export const ColorPickerBase = forwardRef<HTMLDivElement, PropsWithoutControl>(
     },
     ref
   ) => (
-    <Label htmlFor={name} className="flex flex-col gap-1.5">
-      <span className="text-white">{label}</span>
-
+    <InputControl label={label} name={name} error={error}>
       <Primitive.Root
         value={value}
         onValueChange={onValueChange}
@@ -104,8 +99,6 @@ export const ColorPickerBase = forwardRef<HTMLDivElement, PropsWithoutControl>(
           </Primitive.Item>
         ))}
       </Primitive.Root>
-
-      {error && <span className="text-silver font-light">{error}</span>}
-    </Label>
+    </InputControl>
   )
 );
