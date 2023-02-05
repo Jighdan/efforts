@@ -1,3 +1,3 @@
 export enum Channels {
-  EFFORTS_INSERT = "efforts-insert",
+  EFFORTS_ALL = "efforts-all",
 }

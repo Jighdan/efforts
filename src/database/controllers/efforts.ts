@@ -25,7 +25,7 @@ export class EffortsController {
 
   public subscribeToChanges = (callback: () => void) => {
     return this.client
-      .channel(Channels.EFFORTS_INSERT)
+      .channel(Channels.EFFORTS_ALL)
       .on(
         "postgres_changes",
         { event: "*", schema: "public", table: this.table },
