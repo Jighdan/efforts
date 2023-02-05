@@ -9,7 +9,7 @@ import {
   Control,
   RegisterOptions,
 } from "react-hook-form";
-import { Root as Label } from "@radix-ui/react-label";
+import { InputControl } from "~/common/components/InputControl";
 
 interface Props<FormFields extends FieldValues>
   extends PrimitiveRootProps,
@@ -56,9 +56,11 @@ export function Select<FormFields extends FieldValues>({
   );
 
   return (
-    <Label htmlFor={field.name} className="flex flex-col gap-1.5">
-      <span className="text-white">{label}</span>
-
+    <InputControl
+      label={label}
+      name={field.name}
+      error={fieldState.error?.message}
+    >
       <Primitive.Root
         onValueChange={field.onChange}
         {...field}
@@ -94,12 +96,6 @@ export function Select<FormFields extends FieldValues>({
           </Primitive.Viewport>
         </Primitive.Content>
       </Primitive.Root>
-
-      {fieldState.error?.message && (
-        <span className="text-silver font-light">
-          {fieldState.error?.message}
-        </span>
-      )}
-    </Label>
+    </InputControl>
   );
 }
