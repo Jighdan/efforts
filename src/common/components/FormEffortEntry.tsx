@@ -6,7 +6,7 @@ import { CreateEffortEntryDto } from "~/common/dto/effort-entry";
 import { Input } from "~/common/components/Input";
 import { Button } from "~/common/components/Button";
 import { Select } from "~/common/components/Select";
-import { useStore } from "~/store";
+import { database } from "~/database";
 
 interface Props {
   efforts: EffortDto[];
@@ -23,8 +23,6 @@ const schema = z.object({
 });
 
 export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
-  const { addEffortEntry } = useStore();
-
   const form = useForm<CreateEffortEntryDto>({
     resolver: zodResolver(schema),
     shouldFocusError: true,
@@ -32,14 +30,19 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
   });
 
   const onSubmit: SubmitHandler<CreateEffortEntryDto> = async (dto) => {
-    await addEffortEntry({
-      date: new Date().toUTCString(),
+    const entry: CreateEffortEntryDto = {
+      date: new Date().toISOString(),
       description: dto.description,
       effort_id: dto.effort_id,
-    });
+    };
 
-    form.reset();
-    closeModal();
+    const response = await database.entries.create(entry);
+    console.info(response);
+
+    if (!response.error) {
+      form.reset();
+      closeModal();
+    }
   };
 
   const onSubmitError: SubmitErrorHandler<CreateEffortEntryDto> = async (
@@ -60,6 +63,7 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
           type="text"
           placeholder="a brief of the event"
           error={form.formState.errors?.description?.message}
+          autoComplete="off"
         />
 
         <Select
