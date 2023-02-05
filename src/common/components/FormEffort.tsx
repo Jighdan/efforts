@@ -50,13 +50,9 @@ export const FormEffort = ({ closeModal }: Props) => {
           required
         />
 
-        <ColorPicker
-          label="Color"
-          control={form.control}
-          name="color"
-          required
-          items={COLORS}
-        />
+        <ColorPicker label="Color" control={form.control} name="color" required>
+          {COLORS}
+        </ColorPicker>
       </div>
 
       <Button label="Save Effort" type="submit">
@@ -64,6 +60,4 @@ export const FormEffort = ({ closeModal }: Props) => {
       </Button>
     </form>
   );
-
-  return <></>;
 };
