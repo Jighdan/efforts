@@ -3,13 +3,14 @@ import { useStore } from "~/store";
 import { ButtonAdd } from "~/common/components/ButtonAdd";
 import { ModalEntry } from "./components/ModalEntry";
 import { useState } from "react";
+import { useTodayEntriesContext } from "~/common/contexts/entries-today";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const store = useStore();
   const date = getLocaleDate();
 
-  const entries = store.getTodayEntries();
+  const { entries } = useTodayEntriesContext();
 
   return (
     <div className="grid grid-rows-[auto_1fr] gap-6">
@@ -41,9 +42,11 @@ export const View = () => {
                   <>{getLocaleTime(new Date(entry.date))}</>
                 </span>
 
-                <span className="text-silver font-light line-clamp-1">
-                  {entry.effort_title}
-                </span>
+                <div
+                  role="figure"
+                  className="h-3 w-3 rounded-full border border-black"
+                  style={{ backgroundColor: entry.effort.color }}
+                />
               </div>
 
               <p>{entry.description}</p>
