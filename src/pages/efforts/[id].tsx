@@ -1,30 +1,34 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { Layout } from "~/common/layouts/Main";
-import { View, ViewProps } from "~/views/effort";
+import { View } from "~/views/effort";
+import { EffortContextProvider } from "~/common/contexts/effort";
+import { EffortDto } from "~/common/dto/effort";
 
-type Props = InferGetServerSidePropsType<typeof getServerSideProps>;
+interface Props {
+  effortId: EffortDto["id"];
+}
 
-export default function Page(props: Props) {
+export default function Page({ effortId }: Props) {
   return (
     <Layout>
-      <View {...props} />
+      <EffortContextProvider effortId={effortId}>
+        <View />
+      </EffortContextProvider>
     </Layout>
   );
 }
-
 interface Params extends ParsedUrlQuery {
   id: string;
 }
 
-export const getServerSideProps: GetServerSideProps<
-  ViewProps,
-  Params
-> = async ({ params }) => {
+export const getServerSideProps: GetServerSideProps<Props, Params> = async ({
+  params,
+}) => {
   const id = params?.id;
 
   if (id) {
-    return { props: { id: parseInt(id) } };
+    return { props: { effortId: parseInt(id) } };
   }
 
   return { notFound: true };

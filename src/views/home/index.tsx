@@ -1,13 +1,13 @@
 import { getLocaleDate, getLocaleTime } from "~/common/utilities/date";
-import { useStore } from "~/store";
 import { ButtonAdd } from "~/common/components/ButtonAdd";
 import { ModalEntry } from "./components/ModalEntry";
 import { useState } from "react";
 import { useTodayEntriesContext } from "~/common/contexts/entries-today";
+import { useEffortsContext } from "~/common/contexts/efforts";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const store = useStore();
+  const { efforts } = useEffortsContext();
   const date = getLocaleDate();
 
   const { entries } = useTodayEntriesContext();
@@ -58,7 +58,7 @@ export const View = () => {
       <ModalEntry
         isOpen={isFormOpen}
         setIsOpen={setIsFormOpen}
-        efforts={store.efforts}
+        efforts={efforts}
       />
     </div>
   );

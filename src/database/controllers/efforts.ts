@@ -1,5 +1,9 @@
 import { client } from "~/database/client";
-import { EffortDto, CreateEffortDto } from "~/common/dto/effort";
+import {
+  EffortDto,
+  CreateEffortDto,
+  EffortWithMetaDto,
+} from "~/common/dto/effort";
 import { Channels } from "~/common/enums/database-channels";
 
 export class EffortsController {
@@ -8,7 +12,38 @@ export class EffortsController {
   private readonly query = this.client.from(this.table);
 
   public getAll = async () => {
-    return this.query.select("*").order("created_at", { ascending: true });
+    return this.query
+      .select(
+        `
+      id,
+      title,
+      color,
+      created_at
+    `
+      )
+      .order("created_at", { ascending: true })
+      .returns<EffortDto>();
+  };
+
+  public getById = async (id: EffortDto["id"]) => {
+    return this.query
+      .select(
+        `
+          id,
+          title,
+          color,
+          created_at,
+          entries:efforts_entries (
+            id,
+            date,
+            description
+          )
+          `
+      )
+      .eq("id", id)
+      .order("date", { foreignTable: "efforts_entries", ascending: true })
+      .returns<EffortWithMetaDto>()
+      .single();
   };
 
   public getCount = async () => {
