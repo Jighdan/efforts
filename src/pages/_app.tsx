@@ -1,15 +1,22 @@
 import type { AppProps } from "next/app";
-import { StoreProvider } from "~/store";
+import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
 import { LayoutRefContextProvider } from "~/common/contexts/layout-ref";
+import { client } from "~/database/client";
 
 import "~/styles/globals.css";
 
-export default function App({ Component, pageProps }: AppProps) {
+type Props = AppProps<{
+  session: Session;
+}>;
+
+const App = ({ Component, pageProps: { session, ...pageProps } }: Props) => {
   return (
-    <StoreProvider>
+    <SessionContextProvider supabaseClient={client} initialSession={session}>
       <LayoutRefContextProvider>
         <Component {...pageProps} />
       </LayoutRefContextProvider>
-    </StoreProvider>
+    </SessionContextProvider>
   );
-}
+};
+
+export default App;

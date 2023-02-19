@@ -2,10 +2,13 @@ import Link from "next/link";
 import { ButtonAdd } from "~/common/components/ButtonAdd";
 import { ModalEffort } from "./components/ModalEffort";
 import { useState } from "react";
-import { useEffortsContext } from "~/common/contexts/efforts";
+import { EffortDto } from "~/common/dto/effort";
 
-export const View = () => {
-  const { efforts } = useEffortsContext();
+interface Props {
+  efforts: EffortDto[];
+}
+
+export const View = ({ efforts }: Props) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   return (

@@ -1,13 +1,13 @@
+import { useEfforts } from "~/common/hooks/useEfforts";
 import { Layout } from "~/common/layouts/Main";
 import { View } from "~/views/efforts";
-import { EffortsContextProvider } from "~/common/contexts/efforts";
 
 export default function Page() {
+  const { efforts } = useEfforts();
+
   return (
     <Layout>
-      <EffortsContextProvider>
-        <View />
-      </EffortsContextProvider>
+      <View efforts={efforts} />
     </Layout>
   );
 }

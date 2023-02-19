@@ -1,21 +1,15 @@
-import { useMemo } from "react";
-import { useStore } from "~/store";
 import { IconArrowLeft } from "~/common/assets/icons/IconArrowLeft";
 import Link from "next/link";
 import { Routes } from "~/common/enums/routes";
+import { useEffortContext } from "~/common/contexts/effort";
 
-export interface ViewProps {
-  id: number;
-}
-
-export const View = ({ id }: ViewProps) => {
-  const { getEffortById } = useStore();
-  const effort = useMemo(() => getEffortById(id), [id]);
+export const View = () => {
+  const { effort } = useEffortContext();
 
   return (
     <div className="max-h-full overflow-y-hidden flex flex-col gap-6">
       <header className="flex flex-col gap-2">
-        <Link href={Routes.ALL_EFFORTS} title="All efforts">
+        <Link href={Routes.ALL_EFFORTS} replace title="All efforts">
           <IconArrowLeft className="size-sm" />
         </Link>
 
