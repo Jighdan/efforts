@@ -1,8 +1,8 @@
 import Link from "next/link";
-import { ButtonAdd } from "~/common/components/ButtonAdd";
+import { ButtonAdd } from "~/components/ButtonAdd";
 import { ModalEffort } from "./components/ModalEffort";
 import { useState } from "react";
-import { EffortDto } from "~/common/dto/effort";
+import { EffortDto } from "~/dto/effort";
 
 interface Props {
   efforts: EffortDto[];

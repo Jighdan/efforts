@@ -3,8 +3,8 @@ import {
   EffortDto,
   CreateEffortDto,
   EffortWithMetaDto,
-} from "~/common/dto/effort";
-import { Channels } from "~/common/enums/database-channels";
+} from "~/dto/effort";
+import { Channels } from "~/enums/database-channels";
 
 export class EffortsController {
   private readonly client = client;

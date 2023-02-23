@@ -1,7 +1,7 @@
-import { IconArrowLeft } from "~/common/assets/icons/IconArrowLeft";
+import { IconArrowLeft } from "~/assets/icons/IconArrowLeft";
 import Link from "next/link";
-import { Routes } from "~/common/enums/routes";
-import { useEffortContext } from "~/common/contexts/effort";
+import { Routes } from "~/enums/routes";
+import { useEffortContext } from "~/contexts/effort";
 
 export const View = () => {
   const { effort } = useEffortContext();

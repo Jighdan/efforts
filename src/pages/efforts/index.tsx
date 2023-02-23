@@ -1,5 +1,5 @@
-import { useEfforts } from "~/common/hooks/useEfforts";
-import { Layout } from "~/common/layouts/Main";
+import { useEfforts } from "~/hooks/useEfforts";
+import { Layout } from "~/layouts/Main";
 import { View } from "~/views/efforts";
 
 export default function Page() {
