@@ -11,7 +11,6 @@ import { Channels } from "~/common/enums/database-channels";
 export class EffortsEntriesController {
   private readonly client = client;
   private readonly table = "efforts_entries";
-  private readonly query = this.client.from(this.table);
 
   public getAllFromToday = async (date = new Date()) => {
     const dates = {
@@ -19,7 +18,7 @@ export class EffortsEntriesController {
       end: getDateEndTime(date).toISOString(),
     };
 
-    return this.query
+    return this.getQuery()
       .select(
         `
         id,
@@ -39,18 +38,18 @@ export class EffortsEntriesController {
   };
 
   public getByEffortId = async (id: EffortDto["id"]) => {
-    return this.query
+    return this.getQuery()
       .select()
       .eq("effort_id", id)
       .order("date", { ascending: true });
   };
 
   public create = async (dto: CreateEffortEntryDto) => {
-    return this.query.insert(dto);
+    return this.getQuery().insert(dto);
   };
 
   public delete = async (id: EffortEntryDto["id"]) => {
-    return this.query.delete().eq("id", id);
+    return this.getQuery().delete().eq("id", id);
   };
 
   public subscribeToChanges = (callback: () => void) => {
@@ -62,4 +61,8 @@ export class EffortsEntriesController {
         () => callback()
       );
   };
+
+  private getQuery = () => {
+    return this.client.from(this.table)
+  }
 }

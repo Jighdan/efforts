@@ -9,10 +9,9 @@ import { Channels } from "~/common/enums/database-channels";
 export class EffortsController {
   private readonly client = client;
   private readonly table = "efforts";
-  private readonly query = this.client.from(this.table);
 
   public getAll = async () => {
-    return this.query
+    return this.getQuery()
       .select(
         `
       id,
@@ -26,7 +25,7 @@ export class EffortsController {
   };
 
   public getById = async (id: EffortDto["id"]) => {
-    return this.query
+    return this.getQuery()
       .select(
         `
           id,
@@ -47,15 +46,15 @@ export class EffortsController {
   };
 
   public getCount = async () => {
-    return this.query.select("*", { count: "exact", head: true });
+    return this.getQuery().select("*", { count: "exact", head: true });
   };
 
   public create = async (dto: CreateEffortDto) => {
-    return this.query.insert(dto);
+    return this.getQuery().insert(dto);
   };
 
   public delete = async (id: EffortDto["id"]) => {
-    return this.query.delete().eq("id", id);
+    return this.getQuery().delete().eq("id", id);
   };
 
   public subscribeToChanges = (callback: () => void) => {
@@ -67,4 +66,17 @@ export class EffortsController {
         () => callback()
       );
   };
+
+  public subscribeToEffortChanges = (effortId: EffortDto['id'], callback: () => void) => {
+    const event = 'UPDATE';
+    const filter = `id=eq.${effortId}`;
+
+    return this.client
+      .channel(Channels.EFFORT)
+      .on('postgres_changes', { event, schema: 'public', table: this.table, filter }, callback)
+  };
+
+  private getQuery = () => {
+    return this.client.from(this.table);
+  }
 }
