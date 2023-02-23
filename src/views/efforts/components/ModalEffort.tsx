@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { FormEffort } from "~/common/components/FormEffort";
-import { Modal } from "~/common/components/Modal";
+import { FormEffort } from "~/components/FormEffort";
+import { Modal } from "~/components/Modal";
 
 interface Props {
   isOpen: boolean;

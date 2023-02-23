@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from "react";
-import { FormEffortEntry } from "~/common/components/FormEffortEntry";
-import { Modal } from "~/common/components/Modal";
-import { EffortDto } from "~/common/dto/effort";
+import { FormEffortEntry } from "~/components/FormEffortEntry";
+import { Modal } from "~/components/Modal";
+import { EffortDto } from "~/dto/effort";
 
 interface Props {
   isOpen: boolean;

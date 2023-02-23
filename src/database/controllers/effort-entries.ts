@@ -1,12 +1,12 @@
 import { client } from "~/database/client";
-import { EffortDto } from "~/common/dto/effort";
+import { EffortDto } from "~/dto/effort";
 import {
   EffortEntryDto,
   CreateEffortEntryDto,
   EffortEntryWithMetaDto,
-} from "~/common/dto/effort-entry";
-import { getDateEndTime, getDateStartTime } from "~/common/utilities/date";
-import { Channels } from "~/common/enums/database-channels";
+} from "~/dto/effort-entry";
+import { getDateEndTime, getDateStartTime } from "~/utilities/date";
+import { Channels } from "~/enums/database-channels";
 
 export class EffortsEntriesController {
   private readonly client = client;

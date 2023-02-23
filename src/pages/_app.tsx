@@ -1,6 +1,6 @@
 import type { AppProps } from "next/app";
 import { SessionContextProvider, Session } from "@supabase/auth-helpers-react";
-import { LayoutRefContextProvider } from "~/common/contexts/layout-ref";
+import { LayoutRefContextProvider } from "~/contexts/layout-ref";
 import { client } from "~/database/client";
 
 import "~/styles/globals.css";

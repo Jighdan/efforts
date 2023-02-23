@@ -1,9 +1,9 @@
 import { GetServerSideProps } from "next";
 import { ParsedUrlQuery } from "querystring";
-import { Layout } from "~/common/layouts/Main";
+import { Layout } from "~/layouts/Main";
 import { View } from "~/views/effort";
-import { EffortContextProvider } from "~/common/contexts/effort";
-import { EffortDto } from "~/common/dto/effort";
+import { EffortContextProvider } from "~/contexts/effort";
+import { EffortDto } from "~/dto/effort";
 
 interface Props {
   effortId: EffortDto["id"];

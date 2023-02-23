@@ -1,6 +1,6 @@
-import { Layout } from "~/common/layouts/Main";
+import { Layout } from "~/layouts/Main";
 import { View } from "~/views/home";
-import { TodayEntriesContextProvider } from "~/common/contexts/entries-today";
+import { TodayEntriesContextProvider } from "~/contexts/entries-today";
 
 export default function Page() {
   return (

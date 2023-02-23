@@ -1,9 +1,9 @@
-import { getLocaleDate, getLocaleTime } from "~/common/utilities/date";
-import { ButtonAdd } from "~/common/components/ButtonAdd";
+import { getLocaleDate, getLocaleTime } from "~/utilities/date";
+import { ButtonAdd } from "~/components/ButtonAdd";
 import { ModalEntry } from "./components/ModalEntry";
 import { useState } from "react";
-import { useTodayEntriesContext } from "~/common/contexts/entries-today";
-import { useEfforts } from "~/common/hooks/useEfforts";
+import { useTodayEntriesContext } from "~/contexts/entries-today";
+import { useEfforts } from "~/hooks/useEfforts";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
