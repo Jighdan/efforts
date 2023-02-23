@@ -3,14 +3,13 @@ import { ButtonAdd } from "~/common/components/ButtonAdd";
 import { ModalEntry } from "./components/ModalEntry";
 import { useState } from "react";
 import { useTodayEntriesContext } from "~/common/contexts/entries-today";
-import { useEffortsContext } from "~/common/contexts/efforts";
+import { useEfforts } from "~/common/hooks/useEfforts";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const { efforts } = useEffortsContext();
-  const date = getLocaleDate();
-
+  const { efforts } = useEfforts();
   const { entries } = useTodayEntriesContext();
+  const date = getLocaleDate();
 
   return (
     <div className="grid grid-rows-[auto_1fr] gap-6">
