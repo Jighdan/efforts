@@ -12,7 +12,7 @@ export const Input = forwardRef<HTMLInputElement, Props>((props, ref) => (
       {...props}
       ref={ref}
       aria-label={props?.name}
-      className="py-1 bg-transparent text-white border-b border-b-silver focus:outline-none placeholder:text-silver placeholder:lowercase placeholder:font-light"
+      className="py-1 bg-transparent text-black border-b border-b-black focus:outline-none placeholder:text-black placeholder:lowercase placeholder:font-light"
     />
   </InputControl>
 ));

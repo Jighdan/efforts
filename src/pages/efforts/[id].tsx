@@ -4,6 +4,7 @@ import { Layout } from "~/layouts/Main";
 import { View } from "~/views/effort";
 import { EffortContextProvider } from "~/contexts/effort";
 import { EffortDto } from "~/dto/effort";
+import { GuardLoggedInUser } from "~/guards/LoggedInUser";
 
 interface Props {
   effortId: EffortDto["id"];
@@ -11,13 +12,16 @@ interface Props {
 
 export default function Page({ effortId }: Props) {
   return (
-    <Layout>
-      <EffortContextProvider effortId={effortId}>
-        <View />
-      </EffortContextProvider>
-    </Layout>
+    <GuardLoggedInUser>
+      <Layout>
+        <EffortContextProvider effortId={effortId}>
+          <View />
+        </EffortContextProvider>
+      </Layout>
+    </GuardLoggedInUser>
   );
 }
+
 interface Params extends ParsedUrlQuery {
   id: string;
 }
