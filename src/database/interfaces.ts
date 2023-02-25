@@ -3,14 +3,16 @@ export interface Database {
     Tables: {
       efforts: {
         Row: {
-          color: string;
-          created_at: string | null;
           id: number;
+          color: string;
           title: string;
+          user_id: string;
+          created_at: string | null;
         };
         Insert: {
           color: string;
           title: string;
+          user_id: string;
         };
         Update: {
           color?: string;
@@ -37,13 +39,16 @@ export interface Database {
       };
     };
     Views: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Functions: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
     Enums: {
-      [_ in never]: never;
-    };
+      [_ in never]: never
+    }
+    CompositeTypes: {
+      [_ in never]: never
+    }
   };
 }

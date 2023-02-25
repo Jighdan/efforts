@@ -3,7 +3,7 @@ import { EffortEntryDto } from "~/dto/effort-entry";
 
 type Table = Database["public"]["Tables"]["efforts"];
 
-export type EffortDto = Table["Row"];
+export type EffortDto = Omit<Table["Row"], 'user_id'>;
 export type CreateEffortDto = Table["Insert"];
 
 export interface EffortWithMetaDto extends EffortDto {

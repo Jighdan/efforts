@@ -2,10 +2,12 @@ import { EffortDto } from "~/dto/effort";
 import { useState } from "react";
 import { database } from "~/database";
 import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
+import { useUser } from "@supabase/auth-helpers-react";
 
 type ResolvedPromise = Awaited<ReturnType<typeof database.efforts.getById>>;
 
 export const useEffort = (effortId: EffortDto['id']) => {
+	const user = useUser();
 	const [response, setResponse] = useState<ResolvedPromise>();
 
 	useIsomorphicLayoutEffect(() => {
@@ -17,13 +19,15 @@ export const useEffort = (effortId: EffortDto['id']) => {
 
 		getEffort();
 
-		const realtimeSubscription = database.efforts.subscribeToEffortChanges(effortId, () => getEffort());
-		realtimeSubscription.subscribe();
+		if (user) {
+			const realtimeSubscription = database.efforts.subscribeToEffortChanges(effortId, getEffort, user.id);
+			realtimeSubscription.subscribe();
 
-		return () => {
-			realtimeSubscription.unsubscribe();
+			return () => {
+				realtimeSubscription.unsubscribe();
+			}
 		}
-	}, [effortId]);
+	}, [effortId, user]);
 
 
 	return { effort: response?.data || undefined, meta: { error: response?.error, status: response?.statusText } }
