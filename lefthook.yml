@@ -1,0 +1,11 @@
+commit-msg:
+  commands:
+    commit-lint:
+      run: npx commitlint --edit
+
+pre-commit:
+  parallel: true
+  commands:
+    linter:
+      glob: "*.{ts,tsx}"
+      run: pnpm run lint {staged_files} --fix
