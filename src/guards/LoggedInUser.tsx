@@ -1,4 +1,4 @@
-import { useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
 import { Redirect } from "~/components/Redirect";
 import { PropsWithChildren } from "react";
 import { Routes } from "~/enums/routes";
@@ -11,9 +11,9 @@ export const GuardLoggedInUser = ({
   fallbackRoute = Routes.SIGN_IN,
   children,
 }: Props) => {
-  const supabase = useSupabaseClient();
+  const session = useSession();
 
-  if (!supabase.auth.getSession()) {
+  if (!session) {
     return <Redirect to={fallbackRoute} />;
   }
 
