@@ -31,3 +31,5 @@ export const PrimitiveSelect = forwardRef<
     </Root>
   )
 );
+
+PrimitiveSelect.displayName = 'PrimitiveSelect';

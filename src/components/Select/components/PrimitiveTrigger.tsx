@@ -24,3 +24,5 @@ export const PrimitiveTrigger = forwardRef<HTMLButtonElement, Props>(
     );
   }
 );
+
+PrimitiveTrigger.displayName = 'PrimitiveTrigger';

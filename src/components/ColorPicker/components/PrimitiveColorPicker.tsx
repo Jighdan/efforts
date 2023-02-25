@@ -30,3 +30,5 @@ export const PrimitiveColorPicker = forwardRef<
     ))}
   </Root>
 ));
+
+PrimitiveColorPicker.displayName = 'PrimitiveColorPicker';

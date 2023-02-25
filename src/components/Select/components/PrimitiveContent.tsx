@@ -28,3 +28,5 @@ export const PrimitiveContent = forwardRef<HTMLDivElement, Props>(
     </Content>
   )
 );
+
+PrimitiveContent.displayName = 'PrimitiveContent';
