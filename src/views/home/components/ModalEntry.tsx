@@ -1,12 +1,13 @@
 import { Dispatch, SetStateAction } from "react";
+
 import { FormEffortEntry } from "~/components/FormEffortEntry";
 import { Modal } from "~/components/Modal";
 import { EffortDto } from "~/dto/effort";
 
 interface Props {
+  efforts: EffortDto[];
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  efforts: EffortDto[];
 }
 
 export const ModalEntry = ({ isOpen, setIsOpen, efforts }: Props) => (

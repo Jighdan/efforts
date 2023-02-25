@@ -1,6 +1,7 @@
+import { Indicator, Item, Root } from "@radix-ui/react-radio-group";
 import { forwardRef } from "react";
+
 import { PropsWithoutControl } from "../interfaces";
-import { Root, Item, Indicator } from "@radix-ui/react-radio-group";
 
 export const PrimitiveColorPicker = forwardRef<
   HTMLDivElement,
@@ -13,7 +14,7 @@ export const PrimitiveColorPicker = forwardRef<
     required={required}
     orientation="horizontal"
     dir="ltr"
-    className="py-1 grid grid-cols-5 gap-4"
+    className="grid grid-cols-5 gap-4 py-1"
     ref={ref}
     name={name}
   >
@@ -22,13 +23,13 @@ export const PrimitiveColorPicker = forwardRef<
         key={`color-picker-${item.value}`}
         value={item.value}
         disabled={item.disabled}
-        className="size-lg rounded-full focus:outline-none group"
+        className="group rounded-full size-lg focus:outline-none"
         style={{ backgroundColor: item.value }}
       >
-        <Indicator className="block mx-auto group-focus:mx-auto size-lg group-focus:size-lg border-4 group-focus:border-4 border-silver group-focus:border-silver rounded-full group-focus:rounded-full group-focus:block" />
+        <Indicator className="mx-auto block rounded-full border-4 border-silver size-lg group-focus:mx-auto group-focus:block group-focus:rounded-full group-focus:border-4 group-focus:border-silver group-focus:size-lg" />
       </Item>
     ))}
   </Root>
 ));
 
-PrimitiveColorPicker.displayName = 'PrimitiveColorPicker';
+PrimitiveColorPicker.displayName = "PrimitiveColorPicker";

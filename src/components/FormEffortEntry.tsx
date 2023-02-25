@@ -1,16 +1,17 @@
-import { z } from "zod";
-import { useForm, SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { EffortDto } from "~/dto/effort";
-import { CreateEffortEntryDto } from "~/dto/effort-entry";
-import { Input } from "~/components/Input";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
 import { Button } from "~/components/Button";
+import { Input } from "~/components/Input";
 import { Select } from "~/components/Select";
 import { database } from "~/database";
+import { EffortDto } from "~/dto/effort";
+import { CreateEffortEntryDto } from "~/dto/effort-entry";
 
 interface Props {
-  efforts: EffortDto[];
   closeModal: () => void;
+  efforts: EffortDto[];
 }
 
 const schema = z.object({
@@ -37,7 +38,6 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
     };
 
     const response = await database.entries.create(entry);
-    console.info(response);
 
     if (!response.error) {
       form.reset();
@@ -45,16 +45,10 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
     }
   };
 
-  const onSubmitError: SubmitErrorHandler<CreateEffortEntryDto> = async (
-    dto
-  ) => {
-    console.error(dto);
-  };
-
   return (
     <form
-      className="h-full grid grid-rows-[1fr_auto]"
-      onSubmit={form.handleSubmit(onSubmit, onSubmitError)}
+      className="grid h-full grid-rows-[1fr_auto]"
+      onSubmit={form.handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">
         <Input

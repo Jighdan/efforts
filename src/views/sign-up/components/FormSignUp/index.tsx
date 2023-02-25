@@ -1,13 +1,14 @@
-import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
-import { Input } from "~/components/Input";
+import { useRouter } from "next/router";
+import { SubmitHandler, useForm } from "react-hook-form";
+
 import { Button } from "~/components/Button";
+import { Input } from "~/components/Input";
+import { Routes } from "~/enums/routes";
 
 import { FormFields } from "./fields";
 import { schema } from "./schema";
-import { useRouter } from "next/router";
-import { Routes } from "~/enums/routes";
 
 export const FormSignUp = () => {
   const supabase = useSupabaseClient();
@@ -19,15 +20,11 @@ export const FormSignUp = () => {
     criteriaMode: "firstError",
   });
 
-  const onSubmit: SubmitHandler<FormFields> = async ({ email, password }) => {
-    try {
-      const response = await supabase.auth.signUp({ email, password });
+  const onSubmit: SubmitHandler<FormFields> = async (credentials) => {
+    const response = await supabase.auth.signUp(credentials);
 
-      if (!!response.data.user) {
-        router.push(Routes.SIGN_IN);
-      }
-    } catch (error) {
-      console.warn(error);
+    if (response.data.user) {
+      router.push(Routes.SIGN_IN);
     }
   };
 
@@ -35,7 +32,7 @@ export const FormSignUp = () => {
 
   return (
     <form
-      className="h-full grid grid-rows-[1fr_auto]"
+      className="grid h-full grid-rows-[1fr_auto]"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">

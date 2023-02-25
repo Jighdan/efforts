@@ -1,6 +1,7 @@
 import { useSession } from "@supabase/auth-helpers-react";
-import { Redirect } from "~/components/Redirect";
 import { PropsWithChildren } from "react";
+
+import { Redirect } from "~/components/Redirect";
 import { Routes } from "~/enums/routes";
 
 interface Props extends PropsWithChildren {

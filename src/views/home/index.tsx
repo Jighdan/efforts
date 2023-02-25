@@ -1,9 +1,11 @@
-import { getLocaleDate, getLocaleTime } from "~/utilities/date";
-import { ButtonAdd } from "~/components/ButtonAdd";
-import { ModalEntry } from "./components/ModalEntry";
 import { useState } from "react";
+
+import { ButtonAdd } from "~/components/ButtonAdd";
 import { useTodayEntriesContext } from "~/contexts/entries-today";
 import { useEfforts } from "~/hooks/useEfforts";
+import { getLocaleDate, getLocaleTime } from "~/utilities/date";
+
+import { ModalEntry } from "./components/ModalEntry";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -29,15 +31,15 @@ export const View = () => {
         />
       </header>
 
-      <ul className="list-disc flex flex-col gap-6 overflow-y-auto">
+      <ul className="flex list-disc flex-col gap-6 overflow-y-auto">
         {entries.map((entry) => (
           <li
             key={entry.id}
-            className="flex items-start before:content-['●'] before:inline-block before:text-silver gap-2 select-none last:pb-6"
+            className="flex select-none items-start gap-2 before:inline-block before:text-silver before:content-['●'] last:pb-6"
           >
-            <div className="flex flex-col grow">
+            <div className="flex grow flex-col">
               <div className="flex justify-between">
-                <span className="text-silver font-light">
+                <span className="font-light text-silver">
                   <>{getLocaleTime(new Date(entry.date))}</>
                 </span>
 

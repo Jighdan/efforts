@@ -1,9 +1,10 @@
-import { createContext, useContext, useState } from "react";
-import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
-import { database } from "~/database";
-import { WithChildren } from "~/interfaces/with-children";
-import { EffortEntryWithMetaDto } from "~/dto/effort-entry";
 import { useUser } from "@supabase/auth-helpers-react";
+import { createContext, useContext, useState } from "react";
+
+import { database } from "~/database";
+import { EffortEntryWithMetaDto } from "~/dto/effort-entry";
+import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
+import { WithChildren } from "~/interfaces/with-children";
 
 interface State {
   entries: EffortEntryWithMetaDto[];

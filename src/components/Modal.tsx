@@ -1,22 +1,23 @@
 import {
-  Root,
-  Portal,
-  Overlay,
-  Content,
-  Title,
-  Description,
   Close,
+  Content,
+  Description,
+  Overlay,
+  Portal,
+  Root,
+  Title,
 } from "@radix-ui/react-dialog";
 import { Root as Hidden } from "@radix-ui/react-visually-hidden";
-import { WithChildren } from "~/interfaces/with-children";
-import { useLayoutRefContext } from "~/contexts/layout-ref";
+
 import { IconClose } from "~/assets/icons/IconClose";
+import { useLayoutRefContext } from "~/contexts/layout-ref";
+import { WithChildren } from "~/interfaces/with-children";
 
 interface Props extends WithChildren {
+  description: string;
   isOpen: boolean;
   onStateChange: (state: boolean) => void;
   title: string;
-  description: string;
 }
 
 export const Modal = ({
@@ -33,17 +34,17 @@ export const Modal = ({
       <Portal container={container.ref?.current}>
         <Overlay
           forceMount
-          className="fixed inset-0 z-20 backdrop-blur-sm bg-black radix-state-open:animate-fade-in radix-state-closed:animate-fade-out"
+          className="fixed inset-0 z-20 bg-black backdrop-blur-sm radix-state-closed:animate-fade-out radix-state-open:animate-fade-in"
         />
 
-        <Content className="h-screen max-h-screen container max-sm:px-8 md:py-8 fixed z-30 top-0 radix-state-open:animate-fade-down radix-state-closed:animate-fade-up flex flex-col gap-8">
+        <Content className="container fixed top-0 z-30 flex h-screen max-h-screen flex-col gap-8 radix-state-closed:animate-fade-up radix-state-open:animate-fade-down max-sm:px-8 md:py-8">
           <div className="flex justify-between">
-            <Title className="text-white text-xl">{title}</Title>
+            <Title className="text-xl text-white">{title}</Title>
             <Hidden>
               <Description>{description}</Description>
             </Hidden>
             <Close>
-              <IconClose className="size-sm stroke-white" />
+              <IconClose className="stroke-white size-sm" />
             </Close>
           </div>
 

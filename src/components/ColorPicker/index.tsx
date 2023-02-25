@@ -1,7 +1,9 @@
-import { Props } from "./interfaces";
 import { FieldValues, useController } from "react-hook-form";
-import { PrimitiveColorPicker } from "./components/PrimitiveColorPicker";
+
 import { InputControl } from "~/components/InputControl";
+
+import { PrimitiveColorPicker } from "./components/PrimitiveColorPicker";
+import { Props } from "./interfaces";
 
 export function ColorPicker<FormFields extends FieldValues>({
   label,

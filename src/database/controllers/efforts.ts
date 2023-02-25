@@ -1,9 +1,5 @@
 import { client } from "~/database/client";
-import {
-  EffortDto,
-  CreateEffortDto,
-  EffortWithMetaDto,
-} from "~/dto/effort";
+import { CreateEffortDto, EffortDto, EffortWithMetaDto } from "~/dto/effort";
 import { Channels } from "~/enums/database-channels";
 
 export class EffortsController {
@@ -11,7 +7,7 @@ export class EffortsController {
   private readonly table = "efforts";
 
   public getAll = async () => {
-    const userId = await this.getUserId()
+    const userId = await this.getUserId();
 
     return this.getQuery()
       .select(
@@ -22,7 +18,7 @@ export class EffortsController {
       created_at
     `
       )
-      .eq('user_id', userId)
+      .eq("user_id", userId)
       .order("created_at", { ascending: true })
       .returns<EffortDto>();
   };
@@ -61,7 +57,7 @@ export class EffortsController {
   };
 
   public subscribeToChanges = (callback: () => void, userId: string) => {
-    const filter = `user_id=eq.${userId}`
+    const filter = `user_id=eq.${userId}`;
 
     return this.client
       .channel(Channels.EFFORTS_ALL)
@@ -72,21 +68,30 @@ export class EffortsController {
       );
   };
 
-  public subscribeToEffortChanges = (effortId: EffortDto['id'], callback: () => void, userId: string) => {
-    const event = 'UPDATE';
-    const filter = [`id=eq.${effortId}`, `user_id=eq.${userId}`].join('&');
+  public subscribeToEffortChanges = (
+    effortId: EffortDto["id"],
+    callback: () => void,
+    userId: string
+  ) => {
+    const event = "UPDATE";
+    const filter = [`id=eq.${effortId}`, `user_id=eq.${userId}`].join("&");
 
     return this.client
       .channel(Channels.EFFORT)
-      .on('postgres_changes', { event, schema: 'public', table: this.table, filter }, callback)
+      .on(
+        "postgres_changes",
+        { event, schema: "public", table: this.table, filter },
+        callback
+      );
   };
 
   private getQuery = () => {
     return this.client.from(this.table);
-  }
+  };
 
   private getUserId = async () => {
     const { data } = await this.client.auth.getSession();
+
     return data.session?.user.id || null;
-  }
+  };
 }

@@ -4,9 +4,9 @@ import { useRouter } from "next/router";
 import { ReactNode } from "react";
 
 interface Props {
-  label: string;
   href: LinkProps["href"];
   icon: ReactNode;
+  label: string;
 }
 
 export const NavigationItem = ({ label, href, icon }: Props) => {

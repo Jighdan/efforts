@@ -1,24 +1,21 @@
 import { useSupabaseClient, useUser } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
+
 import { Button } from "~/components/Button";
 import { Routes } from "~/enums/routes";
 
 export const ViewSettings = () => {
   const supabase = useSupabaseClient();
   const user = useUser();
-	const router = useRouter();
+  const router = useRouter();
 
   const onSignOutClick = async () => {
-    try {
-      await supabase.auth.signOut();
-			router.push(Routes.SIGN_IN);
-    } catch (error) {
-      console.warn(error);
-    }
+    await supabase.auth.signOut();
+    router.push(Routes.SIGN_IN);
   };
 
   return (
-    <div className="max-h-full overflow-y-hidden flex flex-col gap-6">
+    <div className="flex max-h-full flex-col gap-6 overflow-y-hidden">
       <header>
         <h2 className="text-2xl">Settings</h2>
       </header>

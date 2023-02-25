@@ -1,5 +1,6 @@
 import { Root } from "@radix-ui/react-label";
 import { ComponentProps } from "react";
+
 import { WithChildren } from "~/interfaces/with-children";
 
 interface Props extends WithChildren, PrimitiveProps {

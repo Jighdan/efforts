@@ -1,5 +1,5 @@
-import { cloneElement, HTMLAttributes } from "react";
 import { Root } from "@radix-ui/react-accessible-icon";
+import { cloneElement, HTMLAttributes } from "react";
 
 type Props = Pick<HTMLAttributes<HTMLOrSVGElement>, "className" | "onClick">;
 

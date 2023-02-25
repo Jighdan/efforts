@@ -1,7 +1,8 @@
-import { useState } from "react";
-import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
-import { database } from "~/database";
 import { useUser } from "@supabase/auth-helpers-react";
+import { useState } from "react";
+
+import { database } from "~/database";
+import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
 
 type ResolvedPromise = Awaited<ReturnType<typeof database.efforts.getAll>>;
 
@@ -18,7 +19,10 @@ export const useEfforts = () => {
 
       getEfforts();
 
-      const realtimeSubscription = database.efforts.subscribeToChanges(getEfforts, user.id);
+      const realtimeSubscription = database.efforts.subscribeToChanges(
+        getEfforts,
+        user.id
+      );
 
       realtimeSubscription.subscribe();
 

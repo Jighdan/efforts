@@ -1,5 +1,6 @@
-import { ButtonHTMLAttributes } from "react";
 import cx from "classnames";
+import { ButtonHTMLAttributes } from "react";
+
 import { WithChildren } from "~/interfaces/with-children";
 
 interface Props extends WithChildren, PrimitiveProps {

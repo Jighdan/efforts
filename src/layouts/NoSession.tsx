@@ -1,4 +1,5 @@
-import { PropsWithChildren, ComponentProps } from "react";
+import { ComponentProps, PropsWithChildren } from "react";
+
 import { Button } from "~/components/Button";
 
 interface Props extends PropsWithChildren {
@@ -6,7 +7,7 @@ interface Props extends PropsWithChildren {
 }
 
 export const LayoutNoSession = ({ footerAction, children }: Props) => (
-  <div className="min-h-screen max-h-screen max-sm:px-8 md:py-8 container layout-main first:overflow-hidden">
+  <div className="container layout-main max-h-screen min-h-screen first:overflow-hidden max-sm:px-8 md:py-8">
     {children}
 
     <footer className="w-full pt-4 child:w-full">

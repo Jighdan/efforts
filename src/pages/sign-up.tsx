@@ -1,6 +1,7 @@
-import { LayoutNoSession } from "~/layouts/NoSession";
 import { useRouter } from "next/router";
+
 import { Routes } from "~/enums/routes";
+import { LayoutNoSession } from "~/layouts/NoSession";
 import { SignUpView } from "~/views/sign-up";
 
 export default function Page() {

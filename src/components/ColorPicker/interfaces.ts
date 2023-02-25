@@ -5,8 +5,8 @@ import { FieldValues, UseControllerProps } from "react-hook-form";
 export interface Props<FormFields extends FieldValues>
   extends UseControllerProps<FormFields>,
     SharedProps {
-  label: string;
   children: Item[];
+  label: string;
 }
 
 export interface PropsWithoutControl extends PrimitiveRootProps, SharedProps {

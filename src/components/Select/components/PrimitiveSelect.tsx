@@ -1,8 +1,9 @@
-import { PrimitiveTrigger } from "./PrimitiveTrigger";
-import { PrimitiveContent } from "./PrimitiveContent";
-import { PropsWithoutControl } from "../interfaces";
 import { Root } from "@radix-ui/react-select";
 import { forwardRef } from "react";
+
+import { PropsWithoutControl } from "../interfaces";
+import { PrimitiveContent } from "./PrimitiveContent";
+import { PrimitiveTrigger } from "./PrimitiveTrigger";
 
 export const PrimitiveSelect = forwardRef<
   HTMLButtonElement,
@@ -32,4 +33,4 @@ export const PrimitiveSelect = forwardRef<
   )
 );
 
-PrimitiveSelect.displayName = 'PrimitiveSelect';
+PrimitiveSelect.displayName = "PrimitiveSelect";

@@ -1,16 +1,25 @@
 export interface Database {
   public: {
+    CompositeTypes: {
+      [_ in never]: never;
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    Functions: {
+      [_ in never]: never;
+    };
     Tables: {
       efforts: {
-        Row: {
-          id: number;
+        Insert: {
           color: string;
           title: string;
           user_id: string;
-          created_at: string | null;
         };
-        Insert: {
+        Row: {
           color: string;
+          created_at: string | null;
+          id: number;
           title: string;
           user_id: string;
         };
@@ -20,17 +29,17 @@ export interface Database {
         };
       };
       efforts_entries: {
+        Insert: {
+          description: string;
+          date?: string;
+          effort_id?: number;
+        };
         Row: {
           created_at: string | null;
           date: string;
           description: string;
           effort_id: number;
           id: number;
-        };
-        Insert: {
-          date?: string;
-          description: string;
-          effort_id?: number;
         };
         Update: {
           date?: string;
@@ -39,16 +48,7 @@ export interface Database {
       };
     };
     Views: {
-      [_ in never]: never
-    }
-    Functions: {
-      [_ in never]: never
-    }
-    Enums: {
-      [_ in never]: never
-    }
-    CompositeTypes: {
-      [_ in never]: never
-    }
+      [_ in never]: never;
+    };
   };
 }

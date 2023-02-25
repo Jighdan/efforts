@@ -1,12 +1,12 @@
 import { client } from "~/database/client";
 import { EffortDto } from "~/dto/effort";
 import {
-  EffortEntryDto,
   CreateEffortEntryDto,
+  EffortEntryDto,
   EffortEntryWithMetaDto,
 } from "~/dto/effort-entry";
-import { getDateEndTime, getDateStartTime } from "~/utilities/date";
 import { Channels } from "~/enums/database-channels";
+import { getDateEndTime, getDateStartTime } from "~/utilities/date";
 
 export class EffortsEntriesController {
   private readonly client = client;
@@ -52,9 +52,8 @@ export class EffortsEntriesController {
     return this.getQuery().delete().eq("id", id);
   };
 
-  public subscribeToChanges = (callback: () => void, userId: string) => {
-    const filter = ``;
-
+  /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+  public subscribeToChanges = (callback: () => void, _userId: string) => {
     return this.client
       .channel(Channels.ENTRIES_ALL)
       .on(
@@ -65,6 +64,6 @@ export class EffortsEntriesController {
   };
 
   private getQuery = () => {
-    return this.client.from(this.table)
-  }
+    return this.client.from(this.table);
+  };
 }

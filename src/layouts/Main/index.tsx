@@ -1,11 +1,13 @@
 import { ComponentProps } from "react";
-import { WithChildren } from "~/interfaces/with-children";
-import { Navigation } from "./components/Navigation";
-import { Routes } from "~/enums/routes";
-import { IconQueueList } from "~/assets/icons/IconQueueList";
+
 import { IconPencil } from "~/assets/icons/IconPencil";
+import { IconQueueList } from "~/assets/icons/IconQueueList";
 import { IconSettings } from "~/assets/icons/IconSettings";
 import { useLayoutRefContext } from "~/contexts/layout-ref";
+import { Routes } from "~/enums/routes";
+import { WithChildren } from "~/interfaces/with-children";
+
+import { Navigation } from "./components/Navigation";
 
 type Props = WithChildren;
 
@@ -32,12 +34,12 @@ export const Layout = ({ children }: Props) => {
 
   return (
     <div
-      className="min-h-screen max-h-screen max-sm:px-8 md:py-8 container layout-main first:overflow-hidden"
+      className="container layout-main max-h-screen min-h-screen first:overflow-hidden max-sm:px-8 md:py-8"
       ref={ref}
     >
       {children}
 
-      <footer className="w-full pt-4 border-t-2 border-t-silver hover:border-t-black">
+      <footer className="w-full border-t-2 border-t-silver pt-4 hover:border-t-black">
         <Navigation items={navigation} />
       </footer>
     </div>

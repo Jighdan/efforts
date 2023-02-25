@@ -1,4 +1,5 @@
-import { createContext, useContext, RefObject, useRef } from "react";
+import { createContext, RefObject, useContext, useRef } from "react";
+
 import { WithChildren } from "~/interfaces/with-children";
 
 interface State {

@@ -1,5 +1,6 @@
+import { Content, Item, ItemText, Viewport } from "@radix-ui/react-select";
 import { forwardRef } from "react";
-import { Content, Viewport, Item, ItemText } from "@radix-ui/react-select";
+
 import { PropsWithoutControl } from "../interfaces";
 
 type Props = Pick<PropsWithoutControl, "items">;
@@ -19,7 +20,7 @@ export const PrimitiveContent = forwardRef<HTMLDivElement, Props>(
             key={item.value}
             value={item.value}
             disabled={item.disabled}
-            className="p-2 focus:outline-none select-none hover:bg-silver"
+            className="select-none p-2 hover:bg-silver focus:outline-none"
           >
             <ItemText>{item.label}</ItemText>
           </Item>
@@ -29,4 +30,4 @@ export const PrimitiveContent = forwardRef<HTMLDivElement, Props>(
   )
 );
 
-PrimitiveContent.displayName = 'PrimitiveContent';
+PrimitiveContent.displayName = "PrimitiveContent";

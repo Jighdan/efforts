@@ -1,7 +1,9 @@
-import { forwardRef } from "react";
+import { Icon, Trigger, Value } from "@radix-ui/react-select";
 import cx from "classnames";
-import { Trigger, Value, Icon } from "@radix-ui/react-select";
+import { forwardRef } from "react";
+
 import { IconArrowDown } from "~/assets/icons/IconArrowDown";
+
 import { PropsWithoutControl } from "../interfaces";
 
 type Props = Pick<PropsWithoutControl, "placeholder" | "name" | "value">;
@@ -18,11 +20,11 @@ export const PrimitiveTrigger = forwardRef<HTMLButtonElement, Props>(
         <Value placeholder={placeholder} aria-label={name} />
 
         <Icon className="ml-2">
-          <IconArrowDown className="size-sm stroke-white" />
+          <IconArrowDown className="stroke-white size-sm" />
         </Icon>
       </Trigger>
     );
   }
 );
 
-PrimitiveTrigger.displayName = 'PrimitiveTrigger';
+PrimitiveTrigger.displayName = "PrimitiveTrigger";

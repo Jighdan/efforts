@@ -1,12 +1,12 @@
 import * as Primitive from "@radix-ui/react-select";
-import { ReactNode, ComponentProps } from "react";
+import { ComponentProps, ReactNode } from "react";
 import { FieldValues, UseControllerProps } from "react-hook-form";
 
 export interface Props<FormFields extends FieldValues>
   extends UseControllerProps<FormFields>,
     SharedProps {
-  label: string;
   children: Item[];
+  label: string;
 }
 
 export interface PropsWithoutControl

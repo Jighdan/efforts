@@ -1,4 +1,5 @@
 import { HTMLAttributes } from "react";
+
 import { IconPlus } from "~/assets/icons/IconPlus";
 
 interface Props extends PrimitiveProps {
@@ -15,6 +16,6 @@ export const ButtonAdd = ({ label, onClick }: Props) => (
     type="button"
     aria-label={label}
   >
-    <IconPlus className="size-md stroke-silver group-hover:stroke-black group-focus:stroke-black" />
+    <IconPlus className="stroke-silver size-md group-hover:stroke-black group-focus:stroke-black" />
   </button>
 );

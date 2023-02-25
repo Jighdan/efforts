@@ -1,13 +1,15 @@
-import { z } from "zod";
-import { useForm, SubmitHandler, SubmitErrorHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateEffortDto } from "~/dto/effort";
-import { Input } from "~/components/Input";
-import { Button } from "~/components/Button";
-import { database } from "~/database";
-import { ColorPicker } from "./ColorPicker";
-import { COLORS } from "~/constants/colors";
 import { useUser } from "@supabase/auth-helpers-react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { z } from "zod";
+
+import { Button } from "~/components/Button";
+import { Input } from "~/components/Input";
+import { COLORS } from "~/constants/colors";
+import { database } from "~/database";
+import { CreateEffortDto } from "~/dto/effort";
+
+import { ColorPicker } from "./ColorPicker";
 
 interface Props {
   closeModal: () => void;
@@ -30,29 +32,23 @@ export const FormEffort = ({ closeModal }: Props) => {
   });
 
   const onSubmit: SubmitHandler<FormFields> = async (dto) => {
-    try {
-      if (user) {
-        const response = await database.efforts.create({
-          ...dto,
-          user_id: user.id,
-        });
+    if (user) {
+      const response = await database.efforts.create({
+        ...dto,
+        user_id: user.id,
+      });
 
-        if (!response.error) {
-          closeModal();
-          form.reset();
-        }
+      if (!response.error) {
+        closeModal();
+        form.reset();
       }
-    } catch (error) {
-      console.warn(error);
     }
   };
 
-  const onSubmitError: SubmitErrorHandler<FormFields> = async (dto) => {};
-
   return (
     <form
-      className="h-full grid grid-rows-[1fr_auto]"
-      onSubmit={form.handleSubmit(onSubmit, onSubmitError)}
+      className="grid h-full grid-rows-[1fr_auto]"
+      onSubmit={form.handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">
         <Input

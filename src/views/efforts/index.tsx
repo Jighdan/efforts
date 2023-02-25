@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { ButtonAdd } from "~/components/ButtonAdd";
-import { ModalEffort } from "./components/ModalEffort";
 import { useState } from "react";
+
+import { ButtonAdd } from "~/components/ButtonAdd";
 import { EffortDto } from "~/dto/effort";
+
+import { ModalEffort } from "./components/ModalEffort";
 
 interface Props {
   efforts: EffortDto[];
@@ -18,13 +20,13 @@ export const View = ({ efforts }: Props) => {
         <ButtonAdd label="Add Effort" onClick={() => setIsFormOpen(true)} />
       </div>
 
-      {!!efforts.length ? (
+      {efforts.length ? (
         <ul className="grid auto-rows-fr gap-4">
           {efforts.map((effort) => (
             <li key={effort.id} className="contents">
               <Link
                 href={`/efforts/${effort.id}`}
-                className="p-4 border-2 border-silver text-silver hover:border-black focus:border-black hover:text-black focus:text-black focus:outline-none rounded-md transition-colors"
+                className="rounded-md border-2 border-silver p-4 text-silver transition-colors hover:border-black hover:text-black focus:border-black focus:text-black focus:outline-none"
               >
                 {effort.title}
               </Link>
@@ -32,7 +34,7 @@ export const View = ({ efforts }: Props) => {
           ))}
         </ul>
       ) : (
-        <p className="text-lg text-center text-silver">No Efforts</p>
+        <p className="text-center text-lg text-silver">No Efforts</p>
       )}
 
       <ModalEffort isOpen={isFormOpen} setIsOpen={setIsFormOpen} />

@@ -1,13 +1,14 @@
-import { IconArrowLeft } from "~/assets/icons/IconArrowLeft";
 import Link from "next/link";
-import { Routes } from "~/enums/routes";
+
+import { IconArrowLeft } from "~/assets/icons/IconArrowLeft";
 import { useEffortContext } from "~/contexts/effort";
+import { Routes } from "~/enums/routes";
 
 export const View = () => {
   const { effort } = useEffortContext();
 
   return (
-    <div className="max-h-full overflow-y-hidden flex flex-col gap-6">
+    <div className="flex max-h-full flex-col gap-6 overflow-y-hidden">
       <header className="flex flex-col gap-2">
         <Link href={Routes.ALL_EFFORTS} replace title="All efforts">
           <IconArrowLeft className="size-sm" />
@@ -21,7 +22,7 @@ export const View = () => {
           {effort?.entries.map((entry) => (
             <li key={entry.id}>
               <div>
-                <h4 className="text-silver text-light">
+                <h4 className="text-light text-silver">
                   {entry?.id} - {entry?.date}
                 </h4>
                 <p>{entry.description}</p>
@@ -30,7 +31,7 @@ export const View = () => {
           ))}
         </ul>
       ) : (
-        <p className="text-lg text-center text-silver">
+        <p className="text-center text-lg text-silver">
           No Entries for this effort
         </p>
       )}

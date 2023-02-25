@@ -1,7 +1,9 @@
 import { FieldValues, useController } from "react-hook-form";
+
 import { InputControl } from "~/components/InputControl";
-import { Props } from "./interfaces";
+
 import { PrimitiveSelect } from "./components/PrimitiveSelect";
+import { Props } from "./interfaces";
 
 export function Select<FormFields extends FieldValues>({
   label,
