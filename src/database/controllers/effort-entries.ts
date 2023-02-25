@@ -52,7 +52,9 @@ export class EffortsEntriesController {
     return this.getQuery().delete().eq("id", id);
   };
 
-  public subscribeToChanges = (callback: () => void) => {
+  public subscribeToChanges = (callback: () => void, userId: string) => {
+    const filter = ``;
+
     return this.client
       .channel(Channels.ENTRIES_ALL)
       .on(

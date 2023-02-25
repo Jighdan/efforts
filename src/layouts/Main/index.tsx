@@ -4,7 +4,7 @@ import { Navigation } from "./components/Navigation";
 import { Routes } from "~/enums/routes";
 import { IconQueueList } from "~/assets/icons/IconQueueList";
 import { IconPencil } from "~/assets/icons/IconPencil";
-import { IconCalendar } from "~/assets/icons/IconCalendar";
+import { IconSettings } from "~/assets/icons/IconSettings";
 import { useLayoutRefContext } from "~/contexts/layout-ref";
 
 type Props = WithChildren;
@@ -22,8 +22,8 @@ const navigation: ComponentProps<typeof Navigation>["items"] = [
   },
   {
     label: "Calendar",
-    href: Routes.CALENDAR,
-    icon: <IconCalendar />,
+    href: Routes.SETTINGS,
+    icon: <IconSettings />,
   },
 ];
 
