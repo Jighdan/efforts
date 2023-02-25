@@ -9,7 +9,6 @@ specifiers:
   '@radix-ui/react-radio-group': ^1.1.1
   '@radix-ui/react-select': ^1.2.0
   '@radix-ui/react-visually-hidden': ^1.0.1
-  '@supabase/auth-helpers-nextjs': ^0.5.4
   '@supabase/auth-helpers-react': ^0.3.1
   '@supabase/auth-ui-react': ^0.2.7
   '@supabase/supabase-js': ^2.4.1
@@ -53,7 +52,6 @@ devDependencies:
   '@radix-ui/react-radio-group': 1.1.1_biqbaboplfbrettd7655fr4n2y
   '@radix-ui/react-select': 1.2.0_5ndqzdd6t4rivxsukjv3i3ak2q
   '@radix-ui/react-visually-hidden': 1.0.1_biqbaboplfbrettd7655fr4n2y
-  '@supabase/auth-helpers-nextjs': 0.5.4_l3gewy5tlkgvrrn24rowenxrli
   '@supabase/auth-helpers-react': 0.3.1_l3gewy5tlkgvrrn24rowenxrli
   '@supabase/auth-ui-react': 0.2.7_biqbaboplfbrettd7655fr4n2y
   '@supabase/supabase-js': 2.4.1
@@ -718,25 +716,8 @@ packages:
       react: 18.2.0
     dev: true
 
-  /@supabase/auth-helpers-nextjs/0.5.4_l3gewy5tlkgvrrn24rowenxrli:
-    resolution: {integrity: sha512-Xm3BMDOYPbNyuh8UXDRgBDc3JkeM5S2PfuC1jFJ73CCay4YiH1YxTz06Cvtp+vLH432qdjnqH+49ehVvUehPnQ==}
-    peerDependencies:
-      '@supabase/supabase-js': ^2.0.4
-    dependencies:
-      '@supabase/auth-helpers-shared': 0.2.4_l3gewy5tlkgvrrn24rowenxrli
-      '@supabase/supabase-js': 2.4.1
-    dev: true
-
   /@supabase/auth-helpers-react/0.3.1_l3gewy5tlkgvrrn24rowenxrli:
     resolution: {integrity: sha512-g3SFv08Dz9FapNif/ZY1b7qKGlMJDyTLSayHBz3kb3FuYxg7aLWgQtydDhm5AGbc0XtvpIBuhGTIOVevwpdosA==}
-    peerDependencies:
-      '@supabase/supabase-js': ^2.0.4
-    dependencies:
-      '@supabase/supabase-js': 2.4.1
-    dev: true
-
-  /@supabase/auth-helpers-shared/0.2.4_l3gewy5tlkgvrrn24rowenxrli:
-    resolution: {integrity: sha512-c+hi3N6DhjPTzjXGOokre4gmMZOqt0f1ORrwZwi2s07pk3cbkmn77DwwVtlYMNi3oZNYRQqAfxJu83UzpJrrmg==}
     peerDependencies:
       '@supabase/supabase-js': ^2.0.4
     dependencies:
