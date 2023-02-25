@@ -1,4 +1,4 @@
-import { useSession, useSupabaseClient } from "@supabase/auth-helpers-react";
+import { useSession } from "@supabase/auth-helpers-react";
 import { Redirect } from "~/components/Redirect";
 import { PropsWithChildren } from "react";
 import { Routes } from "~/enums/routes";
