@@ -3,6 +3,7 @@ import { useIsomorphicLayoutEffect } from "~/hooks/useIsomorphicLayoutEffect";
 import { database } from "~/database";
 import { WithChildren } from "~/interfaces/with-children";
 import { EffortEntryWithMetaDto } from "~/dto/effort-entry";
+import { useUser } from "@supabase/auth-helpers-react";
 
 interface State {
   entries: EffortEntryWithMetaDto[];
@@ -17,6 +18,7 @@ type ResolvedPromise = Awaited<
 >;
 
 export const TodayEntriesContextProvider = ({ children }: WithChildren) => {
+  const user = useUser();
   const [response, setResponse] = useState<ResolvedPromise>();
 
   const getEntries = async () => {
@@ -26,16 +28,19 @@ export const TodayEntriesContextProvider = ({ children }: WithChildren) => {
   };
 
   useIsomorphicLayoutEffect(() => {
-    getEntries();
-    const realtimeSubscription = database.entries.subscribeToChanges(() => {
+    if (user) {
       getEntries();
-    });
-    realtimeSubscription.subscribe();
+      const realtimeSubscription = database.entries.subscribeToChanges(
+        getEntries,
+        user.id
+      );
+      realtimeSubscription.subscribe();
 
-    return () => {
-      realtimeSubscription.unsubscribe();
-    };
-  }, []);
+      return () => {
+        realtimeSubscription.unsubscribe();
+      };
+    }
+  }, [user]);
 
   const values: State = {
     entries: response?.data || [],
