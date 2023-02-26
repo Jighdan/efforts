@@ -25,7 +25,7 @@ export const FormSignUp = () => {
 
   return (
     <form
-      className="grid h-full grid-rows-[1fr_auto] gap-4"
+      className="grid h-full grid-rows-[1fr_auto] gap-8"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">
