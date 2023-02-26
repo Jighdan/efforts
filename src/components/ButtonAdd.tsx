@@ -3,16 +3,14 @@ import { ButtonHTMLAttributes } from "react";
 
 import { IconPlus } from "~/assets/icons/IconPlus";
 
-interface Props extends PrimitiveProps {
-  label: string;
-}
+type Props = PrimitiveProps;
 
 type PrimitiveProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  "onClick" | "disabled"
+  "onClick" | "disabled" | "title"
 >;
 
-export const ButtonAdd = ({ label, onClick, disabled }: Props) => {
+export const ButtonAdd = ({ title, onClick, disabled }: Props) => {
   const className = cx("focus:outline-none", {
     group: !disabled,
     "cursor-not-allowed": disabled,
@@ -24,11 +22,10 @@ export const ButtonAdd = ({ label, onClick, disabled }: Props) => {
 
   return (
     <button
-      title={label}
+      title={title}
       onClick={onClick}
       className={className}
       type="button"
-      aria-label={label}
       disabled={disabled}
     >
       <IconPlus className={iconClassName} />

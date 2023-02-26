@@ -73,9 +73,7 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
         </Select>
       </div>
 
-      <Button label="Save entry" type="submit">
-        Save
-      </Button>
+      <Button type="submit">Save</Button>
     </form>
   );
 };
