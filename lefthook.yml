@@ -8,4 +8,4 @@ pre-commit:
   commands:
     linter:
       glob: "*.{ts,tsx}"
-      run: pnpm run lint --fix
+      run: pnpm run lint
