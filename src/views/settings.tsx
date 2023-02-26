@@ -36,9 +36,7 @@ export const ViewSettings = () => {
 
           <ul>
             <li>
-              <Button label="Sign Out" onClick={onSignOutClick}>
-                Sign Out
-              </Button>
+              <Button onClick={onSignOutClick}>Sign Out</Button>
             </li>
           </ul>
         </div>
