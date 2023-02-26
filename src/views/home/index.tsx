@@ -13,6 +13,8 @@ export const View = () => {
   const { efforts } = useEfforts();
   const { entries } = useTodayEntriesContext();
 
+  const hasCreatedEfforts = !!efforts.length;
+
   const onButtonAddClick = () => {
     setIsFormOpen(true);
   };
@@ -22,7 +24,11 @@ export const View = () => {
       <header className="flex items-start justify-between">
         <DateInformation />
 
-        <ButtonAdd label="Add an entry" onClick={onButtonAddClick} />
+        <ButtonAdd
+          label="Add an entry"
+          onClick={onButtonAddClick}
+          disabled={!hasCreatedEfforts}
+        />
       </header>
 
       <ul className="flex list-disc flex-col gap-6 overflow-y-auto">
