@@ -18,7 +18,7 @@ export const SignUpView = () => {
       <div className="flex flex-col gap-12">
         <h2 className="text-2xl">Sign Up</h2>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-8">
           <FormSignUp />
 
           <PasswordChecklist />
