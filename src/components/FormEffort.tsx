@@ -65,9 +65,7 @@ export const FormEffort = ({ closeModal }: Props) => {
         </ColorPicker>
       </div>
 
-      <Button label="Save Effort" type="submit">
-        Save
-      </Button>
+      <Button type="submit">Save</Button>
     </form>
   );
 };

@@ -4,21 +4,20 @@ import { ButtonHTMLAttributes } from "react";
 import { WithChildren } from "~/interfaces/with-children";
 
 interface Props extends WithChildren, PrimitiveProps {
-  label: string;
   variant?: "default" | "outlined";
 }
 
 type PrimitiveProps = Pick<
   ButtonHTMLAttributes<HTMLButtonElement>,
-  "onClick" | "type" | "disabled"
+  "onClick" | "type" | "disabled" | "title"
 >;
 
 export const Button = ({
-  label,
   variant = "default",
   type = "button",
   onClick,
   disabled = false,
+  title,
   children,
 }: Props) => {
   const isDefault = variant === "default";
@@ -38,7 +37,7 @@ export const Button = ({
 
   return (
     <button
-      title={label}
+      title={title}
       type={type}
       onClick={onClick}
       className={className}

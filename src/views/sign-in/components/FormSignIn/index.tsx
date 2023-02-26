@@ -58,7 +58,7 @@ export const FormSignIn = () => {
         />
       </div>
 
-      <Button label="Sign In" type="submit" disabled={shouldButtonBeDisabled}>
+      <Button type="submit" disabled={shouldButtonBeDisabled}>
         Sign In
       </Button>
     </form>
