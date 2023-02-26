@@ -11,7 +11,7 @@ export const LayoutNoSession = ({ footerAction, children }: Props) => (
     {children}
 
     <footer className="w-full pt-4 child:w-full">
-      <Button {...footerAction} />
+      <Button {...footerAction} variant="outlined" />
     </footer>
   </div>
 );
