@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitErrorHandler, SubmitHandler, useForm } from "react-hook-form";
 
 import { Button } from "~/components/Button";
 import { Input } from "~/components/Input";
@@ -29,6 +29,16 @@ export const FormSignIn = () => {
     if (response.data.user) {
       router.push(Routes.HOME);
     }
+
+    if (response.error) {
+      /* eslint-disable-next-line no-console */
+      console.warn(response.error);
+    }
+  };
+
+  const onSubmitError: SubmitErrorHandler<FormFields> = async (errors) => {
+    /* eslint-disable-next-line no-console */
+    console.warn(errors);
   };
 
   const shouldButtonBeDisabled = formState.isSubmitting || !formState.isValid;
@@ -36,7 +46,7 @@ export const FormSignIn = () => {
   return (
     <form
       className="grid h-full grid-rows-[1fr_auto]"
-      onSubmit={handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit, onSubmitError)}
     >
       <div className="flex flex-col gap-8">
         <Input
