@@ -34,17 +34,17 @@ export const Modal = ({
       <Portal container={container.ref?.current}>
         <Overlay
           forceMount
-          className="fixed inset-0 z-20 bg-black backdrop-blur-sm radix-state-closed:animate-fade-out radix-state-open:animate-fade-in"
+          className="fixed inset-0 z-20 bg-white backdrop-blur-sm radix-state-closed:animate-fade-out radix-state-open:animate-fade-in"
         />
 
         <Content className="container fixed top-0 z-30 flex h-screen max-h-screen flex-col gap-8 radix-state-closed:animate-fade-up radix-state-open:animate-fade-down max-sm:px-8 md:py-8">
           <div className="flex justify-between">
-            <Title className="text-xl text-white">{title}</Title>
+            <Title className="text-xl text-black">{title}</Title>
             <Hidden>
               <Description>{description}</Description>
             </Hidden>
             <Close>
-              <IconClose className="stroke-white size-sm" />
+              <IconClose className="stroke-black size-sm" />
             </Close>
           </div>
 
