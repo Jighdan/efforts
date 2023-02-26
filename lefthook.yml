@@ -9,3 +9,6 @@ pre-commit:
     linter:
       glob: "*.{ts,tsx}"
       run: pnpm run lint
+    check-types:
+      glob: "*.{ts,tsx}"
+      run: pnpm run check-types
