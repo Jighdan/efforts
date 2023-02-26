@@ -5,3 +5,9 @@
 html {
   @apply bg-white text-black text-base;
 }
+
+@layer utilities {
+  .fixed-center {
+    @apply fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
