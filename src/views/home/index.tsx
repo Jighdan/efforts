@@ -4,9 +4,9 @@ import { ButtonAdd } from "~/components/ButtonAdd";
 import { useTodayEntriesContext } from "~/contexts/entries-today";
 import { useEfforts } from "~/hooks/useEfforts";
 
-import { ModalEntry } from "./components/ModalEntry";
 import { DateInformation } from "./components/DateInformation";
 import { EffortEntry } from "./components/EffortEntry";
+import { ModalEntry } from "./components/ModalEntry";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
