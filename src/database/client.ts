@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 
-import { env } from "~/configuration/environment";
+import { env } from "~/constants/environment";
 
 import { Database } from "./interfaces";
 
