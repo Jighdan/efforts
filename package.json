@@ -2,6 +2,10 @@
   "name": "efforts",
   "version": "0.1.0",
   "private": true,
+  "author": {
+    "email": "reinny.almonte.ramos@gmail.com",
+    "name": "Reinny Almonte"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
