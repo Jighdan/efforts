@@ -52,6 +52,10 @@ export class EffortsEntriesController {
     return this.getQuery().delete().eq("id", id);
   };
 
+  public deleteAll = async (effortId: EffortDto["id"]) => {
+    return this.getQuery().delete().eq("effort_id", effortId);
+  };
+
   /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
   public subscribeToChanges = (callback: () => void, _userId: string) => {
     return this.client
