@@ -1,24 +1,17 @@
-import { zodResolver } from "@hookform/resolvers/zod";
 import { useSupabaseClient } from "@supabase/auth-helpers-react";
 import { useRouter } from "next/router";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { SubmitHandler, useFormContext } from "react-hook-form";
 
 import { Button } from "~/components/Button";
 import { Input } from "~/components/Input";
 import { Routes } from "~/enums/routes";
 
-import { FormFields } from "./fields";
-import { schema } from "./schema";
+import { FormFields } from "../form-fields";
 
 export const FormSignUp = () => {
   const supabase = useSupabaseClient();
   const router = useRouter();
-
-  const { handleSubmit, register, formState } = useForm<FormFields>({
-    resolver: zodResolver(schema),
-    shouldFocusError: true,
-    criteriaMode: "firstError",
-  });
+  const { handleSubmit, register, formState } = useFormContext<FormFields>();
 
   const onSubmit: SubmitHandler<FormFields> = async (credentials) => {
     const response = await supabase.auth.signUp(credentials);
@@ -32,7 +25,7 @@ export const FormSignUp = () => {
 
   return (
     <form
-      className="grid h-full grid-rows-[1fr_auto]"
+      className="grid h-full grid-rows-[1fr_auto] gap-4"
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">
