@@ -7,6 +7,7 @@ import { Input } from "~/components/Input";
 import { Routes } from "~/enums/routes";
 
 import { FormFields } from "../form-fields";
+import { PasswordChecklist } from "./PasswordChecklist";
 
 export const FormSignUp = () => {
   const supabase = useSupabaseClient();
@@ -55,6 +56,8 @@ export const FormSignUp = () => {
           required
           error={formState.errors.password?.message}
         />
+
+        <PasswordChecklist />
       </div>
 
       <Button label="Sign Up" type="submit" disabled={shouldButtonBeDisabled}>
