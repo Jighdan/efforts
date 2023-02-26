@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { ButtonAdd } from "~/components/ButtonAdd";
+import { Tooltip } from "~/components/Tooltip";
 import { useTodayEntriesContext } from "~/contexts/entries-today";
 import { useEfforts } from "~/hooks/useEfforts";
 
@@ -24,11 +25,16 @@ export const View = () => {
       <header className="flex items-start justify-between">
         <DateInformation />
 
-        <ButtonAdd
-          label="Add an entry"
-          onClick={onButtonAddClick}
-          disabled={!hasCreatedEfforts}
-        />
+        <Tooltip
+          showTooltip={!hasCreatedEfforts}
+          label="Create an effort first"
+        >
+          <ButtonAdd
+            label="Add an entry"
+            onClick={onButtonAddClick}
+            disabled={!hasCreatedEfforts}
+          />
+        </Tooltip>
       </header>
 
       <ul className="flex list-disc flex-col gap-6 overflow-y-auto">
