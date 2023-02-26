@@ -17,7 +17,7 @@ export const View = ({ efforts }: Props) => {
     <div className="flex flex-col gap-6">
       <div className="flex justify-between">
         <h2 className="text-2xl">Efforts</h2>
-        <ButtonAdd label="Add Effort" onClick={() => setIsFormOpen(true)} />
+        <ButtonAdd onClick={() => setIsFormOpen(true)} />
       </div>
 
       {efforts.length ? (

@@ -29,11 +29,7 @@ export const View = () => {
           showTooltip={!hasCreatedEfforts}
           label="Create an effort first"
         >
-          <ButtonAdd
-            label="Add an entry"
-            onClick={onButtonAddClick}
-            disabled={!hasCreatedEfforts}
-          />
+          <ButtonAdd onClick={onButtonAddClick} disabled={!hasCreatedEfforts} />
         </Tooltip>
       </header>
 

@@ -14,7 +14,6 @@ export default function Page() {
   return (
     <LayoutNoSession
       footerAction={{
-        label: "Already have an account?",
         children: "Already have an account?",
         onClick: onFooterAction,
       }}
