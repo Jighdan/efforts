@@ -1,4 +1,5 @@
-import { HTMLAttributes } from "react";
+import cx from "classnames";
+import { ButtonHTMLAttributes } from "react";
 
 import { IconPlus } from "~/assets/icons/IconPlus";
 
@@ -6,16 +7,31 @@ interface Props extends PrimitiveProps {
   label: string;
 }
 
-type PrimitiveProps = Pick<HTMLAttributes<HTMLButtonElement>, "onClick">;
+type PrimitiveProps = Pick<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  "onClick" | "disabled"
+>;
 
-export const ButtonAdd = ({ label, onClick }: Props) => (
-  <button
-    title={label}
-    onClick={onClick}
-    className="group focus:outline-none"
-    type="button"
-    aria-label={label}
-  >
-    <IconPlus className="stroke-silver size-md group-hover:stroke-black group-focus:stroke-black" />
-  </button>
-);
+export const ButtonAdd = ({ label, onClick, disabled }: Props) => {
+  const className = cx("focus:outline-none", {
+    group: !disabled,
+    "cursor-not-allowed": disabled,
+  });
+
+  const iconClassName = cx("stroke-silver size-md", {
+    "group-hover:stroke-black group-focus:stroke-black": !disabled,
+  });
+
+  return (
+    <button
+      title={label}
+      onClick={onClick}
+      className={className}
+      type="button"
+      aria-label={label}
+      disabled={disabled}
+    >
+      <IconPlus className={iconClassName} />
+    </button>
+  );
+};
