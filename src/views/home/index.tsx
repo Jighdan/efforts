@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import { ButtonAdd } from "~/components/ButtonAdd";
+import { EmptyListMessage } from "~/components/EmptyListMessage";
 import { Tooltip } from "~/components/Tooltip";
 import { useTodayEntriesContext } from "~/contexts/entries-today";
 import { useEfforts } from "~/hooks/useEfforts";
@@ -8,7 +9,6 @@ import { useEfforts } from "~/hooks/useEfforts";
 import { DateInformation } from "./components/DateInformation";
 import { Entries } from "./components/Entries";
 import { ModalEntry } from "./components/ModalEntry";
-import { NoEntriesMessage } from "./components/NoEntriesMessage";
 
 export const View = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
@@ -38,7 +38,11 @@ export const View = () => {
           </Tooltip>
         </header>
 
-        {entries.length ? <Entries entries={entries} /> : <NoEntriesMessage />}
+        {entries.length ? (
+          <Entries entries={entries} />
+        ) : (
+          <EmptyListMessage>There are no entries for today.</EmptyListMessage>
+        )}
       </div>
 
       <ModalEntry
