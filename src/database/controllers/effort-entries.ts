@@ -12,6 +12,17 @@ export class EffortsEntriesController {
   private readonly client = client;
   private readonly table = "efforts_entries";
 
+  private readonly fragmentEffortEntryWithMeta = `
+    id,
+    date,
+    description,
+    effort:efforts (
+      id,
+      title,
+      color
+    )
+  `;
+
   public getAllFromToday = async (date = new Date()) => {
     const dates = {
       start: getDateStartTime(date).toISOString(),
@@ -19,18 +30,7 @@ export class EffortsEntriesController {
     };
 
     return this.getQuery()
-      .select(
-        `
-        id,
-        date,
-        description,
-        effort:efforts (
-          id,
-          title,
-          color
-        )
-      `
-      )
+      .select(this.fragmentEffortEntryWithMeta)
       .gt("date", dates.start)
       .lt("date", dates.end)
       .order("date", { ascending: true })
@@ -42,6 +42,14 @@ export class EffortsEntriesController {
       .select()
       .eq("effort_id", id)
       .order("date", { ascending: true });
+  };
+
+  public getById = async (id: EffortEntryDto["id"]) => {
+    return this.getQuery()
+      .select(this.fragmentEffortEntryWithMeta)
+      .eq("id", id)
+      .returns<EffortEntryWithMetaDto>()
+      .single();
   };
 
   public create = async (dto: CreateEffortEntryDto) => {

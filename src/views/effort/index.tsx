@@ -1,13 +1,15 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { IconArrowLeft } from "~/assets/icons/IconArrowLeft";
 import { Button } from "~/components/Button";
 import { DialogAlert } from "~/components/DialogAlert";
+import { HeaderWithLinkBack } from "~/components/HeaderWithLinkBack";
 import { useEffortContext } from "~/contexts/effort";
 import { database } from "~/database";
 import { Routes } from "~/enums/routes";
 import { useToggler } from "~/hooks/useToggler";
+
+import { EffortEntries } from "./components/EffortEntries";
+import { NoEntriesMessage } from "./components/NoEntriesMessage";
 
 export const View = () => {
   const router = useRouter();
@@ -24,15 +26,11 @@ export const View = () => {
 
   return (
     <>
-      <div className="flex max-h-full flex-col gap-6 overflow-y-hidden">
+      <div className="grid grid-rows-[auto_1fr] gap-6 overflow-y-hidden">
         <div className="flex flex-col gap-4">
-          <header className="flex flex-col gap-2">
-            <Link href={Routes.ALL_EFFORTS} replace title="All efforts">
-              <IconArrowLeft className="size-sm" />
-            </Link>
-
-            <h2 className="text-2xl">{effort?.title}</h2>
-          </header>
+          <HeaderWithLinkBack href={Routes.ALL_EFFORTS}>
+            {effort?.title}
+          </HeaderWithLinkBack>
 
           <aside className="flex items-center gap-4">
             <Button variant="outlined" disabled>
@@ -46,22 +44,9 @@ export const View = () => {
         </div>
 
         {effort?.entries.length ? (
-          <ul className="flex flex-col gap-4 overflow-y-auto">
-            {effort?.entries.map((entry) => (
-              <li key={entry.id}>
-                <div>
-                  <h4 className="text-light text-silver">
-                    {entry?.id} - {entry?.date}
-                  </h4>
-                  <p>{entry.description}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <EffortEntries effort={effort} />
         ) : (
-          <p className="text-center text-lg text-silver">
-            No Entries for this effort
-          </p>
+          <NoEntriesMessage />
         )}
       </div>
 
