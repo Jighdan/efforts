@@ -12,7 +12,7 @@ export const PrimitiveTrigger = forwardRef<HTMLButtonElement, Props>(
   ({ placeholder, name, value }, ref) => {
     const className = cx(
       "py-1 flex items-center justify-between border-b border-b-silver bg-transparent focus:outline-none",
-      { "text-white": !!value, "text-silver font-light": !value }
+      { "text-black": !!value, "text-silver font-light": !value }
     );
 
     return (
@@ -20,7 +20,7 @@ export const PrimitiveTrigger = forwardRef<HTMLButtonElement, Props>(
         <Value placeholder={placeholder} aria-label={name} />
 
         <Icon className="ml-2">
-          <IconArrowDown className="stroke-white size-sm" />
+          <IconArrowDown className="stroke-silver size-sm" />
         </Icon>
       </Trigger>
     );

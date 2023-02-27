@@ -24,11 +24,14 @@ const schema = z.object({
 });
 
 export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
-  const form = useForm<CreateEffortEntryDto>({
-    resolver: zodResolver(schema),
-    shouldFocusError: true,
-    criteriaMode: "firstError",
-  });
+  const { register, handleSubmit, reset, control, formState } =
+    useForm<CreateEffortEntryDto>({
+      resolver: zodResolver(schema),
+      shouldFocusError: true,
+      criteriaMode: "firstError",
+    });
+
+  const shouldButtonBeDisabled = !formState.isValid || formState.isSubmitting;
 
   const onSubmit: SubmitHandler<CreateEffortEntryDto> = async (dto) => {
     const entry: CreateEffortEntryDto = {
@@ -40,7 +43,7 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
     const response = await database.entries.create(entry);
 
     if (!response.error) {
-      form.reset();
+      reset();
       closeModal();
     }
   };
@@ -48,21 +51,21 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
   return (
     <form
       className="grid h-full grid-rows-[1fr_auto]"
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">
         <Input
           label="Description"
-          {...form.register("description")}
+          {...register("description")}
           type="text"
           placeholder="a brief of the event"
-          error={form.formState.errors?.description?.message}
+          error={formState.errors?.description?.message}
           autoComplete="off"
         />
 
         <Select
           label="Effort"
-          control={form.control}
+          control={control}
           name="effort_id"
           placeholder="towards which effort"
         >
@@ -73,7 +76,9 @@ export const FormEffortEntry = ({ efforts, closeModal }: Props) => {
         </Select>
       </div>
 
-      <Button type="submit">Save</Button>
+      <Button type="submit" disabled={shouldButtonBeDisabled}>
+        Save
+      </Button>
     </form>
   );
 };

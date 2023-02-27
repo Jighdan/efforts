@@ -16,8 +16,10 @@ interface Props {
 }
 
 export const schema = z.object({
-  title: z.string().min(6),
-  color: z.string().regex(/^#[0-9A-F]{6}$/i),
+  title: z.string({ required_error: "Please set a title" }).min(6),
+  color: z
+    .string({ required_error: "Select a color" })
+    .regex(/^#[0-9A-F]{6}$/i),
 });
 
 type FormFields = Omit<CreateEffortDto, "user_id">;
@@ -25,11 +27,14 @@ type FormFields = Omit<CreateEffortDto, "user_id">;
 export const FormEffort = ({ closeModal }: Props) => {
   const user = useUser();
 
-  const form = useForm<FormFields>({
-    resolver: zodResolver(schema),
-    shouldFocusError: true,
-    criteriaMode: "firstError",
-  });
+  const { formState, reset, register, handleSubmit, control } =
+    useForm<FormFields>({
+      resolver: zodResolver(schema),
+      shouldFocusError: true,
+      criteriaMode: "firstError",
+    });
+
+  const shouldButtonBeDisabled = !formState.isValid || formState.isSubmitting;
 
   const onSubmit: SubmitHandler<FormFields> = async (dto) => {
     if (user) {
@@ -40,7 +45,7 @@ export const FormEffort = ({ closeModal }: Props) => {
 
       if (!response.error) {
         closeModal();
-        form.reset();
+        reset();
       }
     }
   };
@@ -48,24 +53,26 @@ export const FormEffort = ({ closeModal }: Props) => {
   return (
     <form
       className="grid h-full grid-rows-[1fr_auto]"
-      onSubmit={form.handleSubmit(onSubmit)}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div className="flex flex-col gap-8">
         <Input
           label="Title"
-          {...form.register("title")}
+          {...register("title")}
           type="text"
           placeholder="what are you trying to achieve?"
-          error={form.formState.errors?.title?.message}
+          error={formState.errors?.title?.message}
           required
         />
 
-        <ColorPicker label="Color" control={form.control} name="color" required>
+        <ColorPicker label="Color" control={control} name="color" required>
           {COLORS}
         </ColorPicker>
       </div>
 
-      <Button type="submit">Save</Button>
+      <Button type="submit" disabled={shouldButtonBeDisabled}>
+        Save
+      </Button>
     </form>
   );
 };
