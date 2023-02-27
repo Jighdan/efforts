@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 import { Button } from "~/components/Button";
 import { DialogAlert } from "~/components/DialogAlert";
+import { EmptyListMessage } from "~/components/EmptyListMessage";
 import { HeaderWithLinkBack } from "~/components/HeaderWithLinkBack";
 import { useEffortContext } from "~/contexts/effort";
 import { database } from "~/database";
@@ -9,7 +10,6 @@ import { Routes } from "~/enums/routes";
 import { useToggler } from "~/hooks/useToggler";
 
 import { EffortEntries } from "./components/EffortEntries";
-import { NoEntriesMessage } from "./components/NoEntriesMessage";
 
 export const View = () => {
   const router = useRouter();
@@ -46,7 +46,9 @@ export const View = () => {
         {effort?.entries.length ? (
           <EffortEntries effort={effort} />
         ) : (
-          <NoEntriesMessage />
+          <EmptyListMessage>
+            There are no entries for this effort.
+          </EmptyListMessage>
         )}
       </div>
 
