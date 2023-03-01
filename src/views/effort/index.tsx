@@ -4,6 +4,7 @@ import { Button } from "~/components/Button";
 import { DialogAlert } from "~/components/DialogAlert";
 import { EmptyListMessage } from "~/components/EmptyListMessage";
 import { HeaderWithLinkBack } from "~/components/HeaderWithLinkBack";
+import { Tooltip } from "~/components/Tooltip";
 import { useEffortContext } from "~/contexts/effort";
 import { database } from "~/database";
 import { Routes } from "~/enums/routes";
@@ -33,9 +34,11 @@ export const View = () => {
           </HeaderWithLinkBack>
 
           <aside className="flex items-center gap-4">
-            <Button variant="outlined" disabled>
-              Edit
-            </Button>
+            <Tooltip label="Work in Progress">
+              <Button variant="outlined" disabled>
+                Edit
+              </Button>
+            </Tooltip>
 
             <Button variant="outlined" onClick={toggleIsDeleteDialogOpen}>
               Delete
