@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Button } from "~/components/Button";
 import { DialogAlert } from "~/components/DialogAlert";
 import { HeaderWithLinkBack } from "~/components/HeaderWithLinkBack";
+import { Tooltip } from "~/components/Tooltip";
 import { database } from "~/database";
 import { EffortEntryWithMetaDto } from "~/dto/effort-entry";
 import { Routes } from "~/enums/routes";
@@ -37,9 +38,11 @@ export const ViewEffortEntry = ({ entry }: Props) => {
           <HeaderWithLinkBack href={Routes.HOME}>{title}</HeaderWithLinkBack>
 
           <aside className="flex items-center gap-4">
-            <Button variant="outlined" disabled>
-              Edit
-            </Button>
+            <Tooltip label="Work in Progress">
+              <Button variant="outlined" disabled>
+                Edit
+              </Button>
+            </Tooltip>
 
             <Button variant="outlined" onClick={toggleIsDeleteDialogOpen}>
               Delete
